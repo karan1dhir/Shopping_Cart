@@ -75,6 +75,8 @@ C:\Users\karandhir\source\repos\GlobalMarket\GlobalMarket\bin\System.Web.WebPage
 C:\Users\karandhir\source\repos\GlobalMarket\GlobalMarket\bin\System.Web.WebPages.dll
 C:\Users\karandhir\source\repos\GlobalMarket\GlobalMarket\bin\System.Web.WebPages.Razor.dll
 C:\Users\karandhir\source\repos\GlobalMarket\GlobalMarket\bin\WebGrease.dll
+C:\Users\karandhir\source\repos\GlobalMarket\GlobalMarket\bin\DataAccess.dll
+C:\Users\karandhir\source\repos\GlobalMarket\GlobalMarket\bin\Entities.dll
 C:\Users\karandhir\source\repos\GlobalMarket\GlobalMarket\bin\Business.pdb
 C:\Users\karandhir\source\repos\GlobalMarket\GlobalMarket\bin\Business.dll.config
 C:\Users\karandhir\source\repos\GlobalMarket\GlobalMarket\bin\Shared.pdb
@@ -99,14 +101,12 @@ C:\Users\karandhir\source\repos\GlobalMarket\GlobalMarket\bin\Microsoft.AI.Depen
 C:\Users\karandhir\source\repos\GlobalMarket\GlobalMarket\bin\Microsoft.AI.WindowsServer.xml
 C:\Users\karandhir\source\repos\GlobalMarket\GlobalMarket\bin\Microsoft.AI.Web.xml
 C:\Users\karandhir\source\repos\GlobalMarket\GlobalMarket\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+C:\Users\karandhir\source\repos\GlobalMarket\GlobalMarket\bin\DataAccess.pdb
+C:\Users\karandhir\source\repos\GlobalMarket\GlobalMarket\bin\DataAccess.dll.config
+C:\Users\karandhir\source\repos\GlobalMarket\GlobalMarket\bin\Entities.pdb
+C:\Users\karandhir\source\repos\GlobalMarket\GlobalMarket\bin\Entities.dll.config
 C:\Users\karandhir\source\repos\GlobalMarket\GlobalMarket\obj\Debug\Presentation.csprojAssemblyReference.cache
 C:\Users\karandhir\source\repos\GlobalMarket\GlobalMarket\obj\Debug\Presentation.csproj.CoreCompileInputs.cache
 C:\Users\karandhir\source\repos\GlobalMarket\GlobalMarket\obj\Debug\Presentation.csproj.CopyComplete
 C:\Users\karandhir\source\repos\GlobalMarket\GlobalMarket\obj\Debug\GlobalMarket.dll
 C:\Users\karandhir\source\repos\GlobalMarket\GlobalMarket\obj\Debug\GlobalMarket.pdb
-C:\Users\karandhir\source\repos\GlobalMarket\GlobalMarket\bin\DataAccess.dll
-C:\Users\karandhir\source\repos\GlobalMarket\GlobalMarket\bin\Entities.dll
-C:\Users\karandhir\source\repos\GlobalMarket\GlobalMarket\bin\DataAccess.pdb
-C:\Users\karandhir\source\repos\GlobalMarket\GlobalMarket\bin\DataAccess.dll.config
-C:\Users\karandhir\source\repos\GlobalMarket\GlobalMarket\bin\Entities.pdb
-C:\Users\karandhir\source\repos\GlobalMarket\GlobalMarket\bin\Entities.dll.config

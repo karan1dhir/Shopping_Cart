@@ -9,6 +9,8 @@ namespace Shared.DTO.Category
 {
     public class CategoryProductDTO
     {
+        public string Name { get; set; }
+        public int ProductsSold { get; set; }
         public IEnumerable<ProductDTO> Products { get; set; }
     }
 }

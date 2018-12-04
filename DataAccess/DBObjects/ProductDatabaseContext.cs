@@ -7,6 +7,7 @@ using Shared.DTO.Variant;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Data.Entity;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -31,7 +32,7 @@ namespace DataAccess.DBObjects
         }
         public AnalyticsDTO GetTopProductsByCart()
         {
-            List<Category> categories = shoppingCartEntities.Categories.OrderByDescending(c =>c.ProductsSold).ToList();
+            List<Category> categories = shoppingCartEntities.Categories.Include(c =>c.Products).OrderByDescending(c =>c.ProductsSold).ToList();
             foreach(Category category in categories)
             {
                 category.Products = category.Products.ToList();

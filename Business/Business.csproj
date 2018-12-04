@@ -55,6 +55,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BusinessObjects\ProductBusinessContext.cs" />
+    <Compile Include="BusinessObjects\UserBusinessContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

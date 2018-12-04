@@ -7,5 +7,6 @@ namespace GlobalMarket.ViewModels
 {
     public class AnalyticsViewModel
     {
+       public IEnumerable<CategoryProductViewModel> categoryProducts { get; set; }
     }
 }

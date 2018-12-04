@@ -12,7 +12,7 @@ namespace Shared.DTO.Product
     {
 
         public IEnumerable<VariantDTO> Variants { get; set; }
-        public CategoryDTO Category { get; set; }
+        public CategoryProductDTO Category { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
         public string Title { get; set; }

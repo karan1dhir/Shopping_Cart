@@ -4,11 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Shared.DTO.Category
+namespace Shared.DTO.Role
 {
-    public class CategoryDTO
+    public class RoleDTO
     {
+        public Guid ID { get; set; }
         public string Name { get; set; }
-        public int ProductsSold { get; set; }
     }
 }

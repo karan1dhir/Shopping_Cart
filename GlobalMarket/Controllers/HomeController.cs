@@ -1,5 +1,9 @@
-﻿using Business.BusinessObjects;
+﻿using AutoMapper;
+using Business.BusinessObjects;
+using GlobalMarket.ViewModels;
 using Shared.DTO.Analytics;
+using Shared.DTO.Category;
+using Shared.DTO.Product;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,13 +14,33 @@ namespace GlobalMarket.Controllers
 {
     public class HomeController : Controller
     {
-        public void Index()
-
+        IMapper AnalyticsMapper;
+        public HomeController()
+        {
+            var AnalyticsConfig = new MapperConfiguration(cfg => {
+                cfg.CreateMap<AnalyticsDTO, AnalyticsViewModel>();
+                cfg.CreateMap<CategoryProductDTO, CategoryProductViewModel>();
+                cfg.CreateMap<ProductDTO, ProductViewModel>();
+            });
+            AnalyticsMapper = new Mapper(AnalyticsConfig);
+        }
+        public ActionResult Index()
         {
             AnalyticsDTO analyticsDTO = new AnalyticsDTO();
             ProductBusinessContext productBusinessContext = new ProductBusinessContext();
-            analyticsDTO = productBusinessContext.GetTopProductsByCart();
-            Console.WriteLine("abc");
+            AnalyticsViewModel analyticsViewModel = new AnalyticsViewModel();
+
+            try
+            {
+                analyticsDTO = productBusinessContext.GetTopProductsByCart();
+                analyticsViewModel = AnalyticsMapper.Map<AnalyticsDTO, AnalyticsViewModel>(analyticsDTO);
+                return View(analyticsViewModel);
+
+            }
+            catch (Exception)
+            {
+                return View("Internal Error");
+            }
         }
     }
 }
