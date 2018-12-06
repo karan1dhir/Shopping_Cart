@@ -35,7 +35,7 @@ namespace GlobalMarket.ViewModels
 
         [Required]
         //[RegularExpression(@"\d{10}", ErrorMessage = "Please enter a valid Mobile Number")]
-        public int PhoneNumber { get; set; }
+        public string PhoneNumber { get; set; }
 
 
         public string RoleName { get; set; }

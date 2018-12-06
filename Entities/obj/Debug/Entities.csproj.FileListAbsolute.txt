@@ -14,3 +14,4 @@ C:\Users\karandhir\source\repos\GlobalMarket\Entities\obj\Debug\Entities.csproj.
 C:\Users\karandhir\source\repos\GlobalMarket\Entities\obj\Debug\Entities.csproj.CopyComplete
 C:\Users\karandhir\source\repos\GlobalMarket\Entities\obj\Debug\Entities.dll
 C:\Users\karandhir\source\repos\GlobalMarket\Entities\obj\Debug\Entities.pdb
+C:\Users\karandhir\source\repos\GlobalMarket\Entities\obj\Debug\Entities.csprojAssemblyReference.cache

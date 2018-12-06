@@ -83,6 +83,7 @@
     <Property Name="Title" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="OrderLimit" Type="Int32" />
     <Property Name="Description" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="TotalVariantsSold" Type="Int32" />
     <NavigationProperty Name="Category" Relationship="Self.FK_Product_CategoryID" FromRole="Product" ToRole="Category" />
     <NavigationProperty Name="Variants" Relationship="Self.FK_Variant" FromRole="Product" ToRole="Variant" />
   </EntityType>
@@ -118,7 +119,7 @@
     <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="HashPassword" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
-    <Property Name="PhoneNumber" Type="Int32" Nullable="false" />
+    <Property Name="PhoneNumber" Type="String" MaxLength="11" FixedLength="false" Unicode="true" />
     <Property Name="RoleID" Type="Guid" Nullable="false" />
     <NavigationProperty Name="CartVariantMappings" Relationship="Self.FK_CartVariantMapping_Cart" FromRole="User" ToRole="CartVariantMapping" />
     <NavigationProperty Name="OrderPlaceds" Relationship="Self.FK_OrderPlaced_UserID" FromRole="User" ToRole="OrderPlaced" />
@@ -451,7 +452,7 @@
       <End Role="Variant" EntitySet="Variants" />
       <End Role="VariantImage" EntitySet="VariantImages" />
     </AssociationSet>
-    <FunctionImport Name="AddAddress" EntitySet="Addresses" ReturnType="Collection(ShoppingCartModel.Address)">
+    <FunctionImport Name="AddAddress">
       <Parameter Name="UserID" Mode="In" Type="Guid" />
       <Parameter Name="AddressLine1" Mode="In" Type="String" />
       <Parameter Name="Pin" Mode="In" Type="Int32" />

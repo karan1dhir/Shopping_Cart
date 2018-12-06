@@ -21,9 +21,10 @@ namespace DataAccess.DBObjects
         ShoppingCartEntities shoppingCartEntities;
         public ProductDatabaseContext()
         {
-           shoppingCartEntities = new ShoppingCartEntities();
+            shoppingCartEntities = new ShoppingCartEntities();
 
-            var AnalyticsConfig = new MapperConfiguration(cfg =>{
+            var AnalyticsConfig = new MapperConfiguration(cfg =>
+            {
                 cfg.CreateMap<Variant, VariantDTO>();
                 cfg.CreateMap<Product, ProductDTO>();
                 cfg.CreateMap<Category, CategoryProductDTO>().ForMember(dest => dest.Products, opt => opt.MapFrom(src => src.Products));
@@ -32,14 +33,15 @@ namespace DataAccess.DBObjects
         }
         public AnalyticsDTO GetTopProductsByCart()
         {
-            List<Category> categories = shoppingCartEntities.Categories.Include(c =>c.Products).OrderByDescending(c =>c.ProductsSold).ToList();
-            foreach(Category category in categories)
+            List<Category> categories = shoppingCartEntities.Categories.Include(c => c.Products).OrderByDescending(c => c.ProductsSold).ToList();
+            foreach (Category category in categories)
             {
-                category.Products = category.Products.ToList();
+                category.Products = category.Products.OrderByDescending(p => p.TotalVariantsSold).ToList();
                 IEnumerable<Product> products = category.Products;
                 foreach (Product product in products)
                 {
                     IEnumerable<Variant> variants = product.Variants;
+
                 }
             }
             AnalyticsDTO analyticsDTO = new AnalyticsDTO();

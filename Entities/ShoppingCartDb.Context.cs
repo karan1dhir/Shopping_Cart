@@ -44,7 +44,7 @@ namespace Entities
         public virtual DbSet<VariantImage> VariantImages { get; set; }
         public virtual DbSet<VariantPropertyValue> VariantPropertyValues { get; set; }
     
-        public virtual ObjectResult<Address> AddAddress(Nullable<System.Guid> userID, string addressLine1, Nullable<int> pin, string city, string state, string country, string addressLine2)
+        public virtual int AddAddress(Nullable<System.Guid> userID, string addressLine1, Nullable<int> pin, string city, string state, string country, string addressLine2)
         {
             var userIDParameter = userID.HasValue ?
                 new ObjectParameter("UserID", userID) :
@@ -74,40 +74,7 @@ namespace Entities
                 new ObjectParameter("AddressLine2", addressLine2) :
                 new ObjectParameter("AddressLine2", typeof(string));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Address>("AddAddress", userIDParameter, addressLine1Parameter, pinParameter, cityParameter, stateParameter, countryParameter, addressLine2Parameter);
-        }
-    
-        public virtual ObjectResult<Address> AddAddress(Nullable<System.Guid> userID, string addressLine1, Nullable<int> pin, string city, string state, string country, string addressLine2, MergeOption mergeOption)
-        {
-            var userIDParameter = userID.HasValue ?
-                new ObjectParameter("UserID", userID) :
-                new ObjectParameter("UserID", typeof(System.Guid));
-    
-            var addressLine1Parameter = addressLine1 != null ?
-                new ObjectParameter("AddressLine1", addressLine1) :
-                new ObjectParameter("AddressLine1", typeof(string));
-    
-            var pinParameter = pin.HasValue ?
-                new ObjectParameter("Pin", pin) :
-                new ObjectParameter("Pin", typeof(int));
-    
-            var cityParameter = city != null ?
-                new ObjectParameter("City", city) :
-                new ObjectParameter("City", typeof(string));
-    
-            var stateParameter = state != null ?
-                new ObjectParameter("State", state) :
-                new ObjectParameter("State", typeof(string));
-    
-            var countryParameter = country != null ?
-                new ObjectParameter("Country", country) :
-                new ObjectParameter("Country", typeof(string));
-    
-            var addressLine2Parameter = addressLine2 != null ?
-                new ObjectParameter("AddressLine2", addressLine2) :
-                new ObjectParameter("AddressLine2", typeof(string));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Address>("AddAddress", mergeOption, userIDParameter, addressLine1Parameter, pinParameter, cityParameter, stateParameter, countryParameter, addressLine2Parameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("AddAddress", userIDParameter, addressLine1Parameter, pinParameter, cityParameter, stateParameter, countryParameter, addressLine2Parameter);
         }
     
         public virtual int addCategory(string categoryName, ObjectParameter categoryID)

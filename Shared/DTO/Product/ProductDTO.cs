@@ -17,6 +17,6 @@ namespace Shared.DTO.Product
         public string Description { get; set; }
         public string Title { get; set; }
         public int OrderLimit { get; set; }
-
+        public string TotalVariantsSold { get; set; }
     }
 }

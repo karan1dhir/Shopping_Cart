@@ -63,6 +63,7 @@
     <Compile Include="DTO\User\UserDTO.cs" />
     <Compile Include="DTO\User\UserLoginDTO.cs" />
     <Compile Include="DTO\Variant\VariantDTO.cs" />
+    <Compile Include="DTO\Variant\VariantImageDTO.cs" />
     <Compile Include="Exceptions\NotFoundException.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

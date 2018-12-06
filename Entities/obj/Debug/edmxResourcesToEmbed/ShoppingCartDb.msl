@@ -76,6 +76,7 @@
           <ScalarProperty Name="Title" ColumnName="Title" />
           <ScalarProperty Name="OrderLimit" ColumnName="OrderLimit" />
           <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="TotalVariantsSold" ColumnName="TotalVariantsSold" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

@@ -16,7 +16,6 @@ namespace Shared.DTO.Variant
         public int QuantitySold { get; set; }
         public int Inventory { get; set; }
         public ProductDTO Product { get; set; }
-
-
+        public IEnumerable<VariantImageDTO> VariantImages { get; set; }
     }
 }

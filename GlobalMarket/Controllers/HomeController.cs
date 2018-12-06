@@ -37,9 +37,10 @@ namespace GlobalMarket.Controllers
                 return View(analyticsViewModel);
 
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                return View("Internal Error");
+            
+                return View("Internal Error"+ex);
             }
         }
     }

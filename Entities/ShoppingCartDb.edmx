@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="ShoppingCartModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="ShoppingCartModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Address">
           <Key>
             <PropertyRef Name="ID" />
@@ -75,6 +75,7 @@
           <Property Name="Title" Type="nvarchar" MaxLength="150" Nullable="false" />
           <Property Name="OrderLimit" Type="int" />
           <Property Name="Description" Type="nvarchar" MaxLength="250" />
+          <Property Name="TotalVariantsSold" Type="int" />
         </EntityType>
         <EntityType Name="Property">
           <Key>
@@ -105,7 +106,7 @@
           <Property Name="Name" Type="nvarchar" MaxLength="100" Nullable="false" />
           <Property Name="HashPassword" Type="nvarchar" MaxLength="100" Nullable="false" />
           <Property Name="Email" Type="nvarchar" MaxLength="100" Nullable="false" />
-          <Property Name="PhoneNumber" Type="int" Nullable="false" />
+          <Property Name="PhoneNumber" Type="nvarchar" MaxLength="11" />
           <Property Name="RoleID" Type="uniqueidentifier" Nullable="false" />
         </EntityType>
         <EntityType Name="UserAddressMapping">
@@ -521,7 +522,8 @@
             <End Role="VariantPropertyValue" EntitySet="VariantPropertyValue" />
           </AssociationSet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="ShoppingCartModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -608,6 +610,7 @@
           <Property Name="Title" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="OrderLimit" Type="Int32" />
           <Property Name="Description" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="TotalVariantsSold" Type="Int32" />
           <NavigationProperty Name="Category" Relationship="Self.FK_Product_CategoryID" FromRole="Product" ToRole="Category" />
           <NavigationProperty Name="Variants" Relationship="Self.FK_Variant" FromRole="Product" ToRole="Variant" />
         </EntityType>
@@ -643,7 +646,7 @@
           <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="HashPassword" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="PhoneNumber" Type="Int32" Nullable="false" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="11" FixedLength="false" Unicode="true" />
           <Property Name="RoleID" Type="Guid" Nullable="false" />
           <NavigationProperty Name="CartVariantMappings" Relationship="Self.FK_CartVariantMapping_Cart" FromRole="User" ToRole="CartVariantMapping" />
           <NavigationProperty Name="OrderPlaceds" Relationship="Self.FK_OrderPlaced_UserID" FromRole="User" ToRole="OrderPlaced" />
@@ -976,7 +979,7 @@
             <End Role="Variant" EntitySet="Variants" />
             <End Role="VariantImage" EntitySet="VariantImages" />
           </AssociationSet>
-          <FunctionImport Name="AddAddress" EntitySet="Addresses" ReturnType="Collection(ShoppingCartModel.Address)">
+          <FunctionImport Name="AddAddress">
             <Parameter Name="UserID" Mode="In" Type="Guid" />
             <Parameter Name="AddressLine1" Mode="In" Type="String" />
             <Parameter Name="Pin" Mode="In" Type="Int32" />
@@ -1154,6 +1157,7 @@
                 <ScalarProperty Name="Title" ColumnName="Title" />
                 <ScalarProperty Name="OrderLimit" ColumnName="OrderLimit" />
                 <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="TotalVariantsSold" ColumnName="TotalVariantsSold" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

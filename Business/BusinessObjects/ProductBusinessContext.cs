@@ -15,10 +15,19 @@ namespace Business.BusinessObjects
 
         public AnalyticsDTO GetTopProductsByCart()
         {
+            int counter = 0;
             AnalyticsDTO analyticsDTO = productDatabaseContext.GetTopProductsByCart();
             foreach(var category in analyticsDTO.categoryProducts)
             {
-                category.Products = category.Products.Take(4);
+                if (counter < 3)
+                {
+                    category.Products = category.Products.Take(3);
+                }
+                else
+                {
+                    category.Products = category.Products.Take(5);
+                }
+                counter++;
             }
             return analyticsDTO;
         }
