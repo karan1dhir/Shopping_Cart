@@ -14,7 +14,7 @@ namespace Shared.DTO.User
        public string HashPassword { get; set; }
        public string Email { get; set; }
        public int PhoneNumber { get; set; }
-       public RoleDTO Role { get; set; }
+       public string RoleName { get; set; }
     }
 }
 

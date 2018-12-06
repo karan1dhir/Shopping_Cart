@@ -10,7 +10,6 @@ C:\Users\karandhir\source\repos\GlobalMarket\Entities\bin\Debug\AutoMapper.xml
 C:\Users\karandhir\source\repos\GlobalMarket\Entities\bin\Debug\EntityFramework.xml
 C:\Users\karandhir\source\repos\GlobalMarket\Entities\bin\Debug\EntityFramework.SqlServer.xml
 C:\Users\karandhir\source\repos\GlobalMarket\Entities\bin\Debug\System.ValueTuple.xml
-C:\Users\karandhir\source\repos\GlobalMarket\Entities\obj\Debug\Entities.csprojAssemblyReference.cache
 C:\Users\karandhir\source\repos\GlobalMarket\Entities\obj\Debug\Entities.csproj.CoreCompileInputs.cache
 C:\Users\karandhir\source\repos\GlobalMarket\Entities\obj\Debug\Entities.csproj.CopyComplete
 C:\Users\karandhir\source\repos\GlobalMarket\Entities\obj\Debug\Entities.dll

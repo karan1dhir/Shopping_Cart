@@ -29,7 +29,7 @@ namespace GlobalMarket.Controllers
             AnalyticsDTO analyticsDTO = new AnalyticsDTO();
             ProductBusinessContext productBusinessContext = new ProductBusinessContext();
             AnalyticsViewModel analyticsViewModel = new AnalyticsViewModel();
-
+             
             try
             {
                 analyticsDTO = productBusinessContext.GetTopProductsByCart();

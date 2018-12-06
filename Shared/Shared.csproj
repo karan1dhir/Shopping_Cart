@@ -57,11 +57,13 @@
     <Compile Include="DTO\Analytics\AnalyticsDTO.cs" />
     <Compile Include="DTO\Category\CategoryProductDTO.cs" />
     <Compile Include="DTO\Product\ProductDTO.cs" />
+    <Compile Include="DTO\Role\RoleBasicDTO.cs" />
     <Compile Include="DTO\Role\RoleDTO.cs" />
     <Compile Include="DTO\User\UserBasicDTO.cs" />
     <Compile Include="DTO\User\UserDTO.cs" />
     <Compile Include="DTO\User\UserLoginDTO.cs" />
     <Compile Include="DTO\Variant\VariantDTO.cs" />
+    <Compile Include="Exceptions\NotFoundException.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

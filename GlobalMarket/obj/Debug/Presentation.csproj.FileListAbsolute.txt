@@ -76,6 +76,7 @@ C:\Users\karandhir\source\repos\GlobalMarket\GlobalMarket\bin\System.Web.WebPage
 C:\Users\karandhir\source\repos\GlobalMarket\GlobalMarket\bin\System.Web.WebPages.Razor.dll
 C:\Users\karandhir\source\repos\GlobalMarket\GlobalMarket\bin\WebGrease.dll
 C:\Users\karandhir\source\repos\GlobalMarket\GlobalMarket\bin\DataAccess.dll
+C:\Users\karandhir\source\repos\GlobalMarket\GlobalMarket\bin\BCrypt.Net.dll
 C:\Users\karandhir\source\repos\GlobalMarket\GlobalMarket\bin\Entities.dll
 C:\Users\karandhir\source\repos\GlobalMarket\GlobalMarket\bin\Business.pdb
 C:\Users\karandhir\source\repos\GlobalMarket\GlobalMarket\bin\Business.dll.config
@@ -103,6 +104,8 @@ C:\Users\karandhir\source\repos\GlobalMarket\GlobalMarket\bin\Microsoft.AI.Web.x
 C:\Users\karandhir\source\repos\GlobalMarket\GlobalMarket\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
 C:\Users\karandhir\source\repos\GlobalMarket\GlobalMarket\bin\DataAccess.pdb
 C:\Users\karandhir\source\repos\GlobalMarket\GlobalMarket\bin\DataAccess.dll.config
+C:\Users\karandhir\source\repos\GlobalMarket\GlobalMarket\bin\BCrypt.Net.pdb
+C:\Users\karandhir\source\repos\GlobalMarket\GlobalMarket\bin\BCrypt.Net.xml
 C:\Users\karandhir\source\repos\GlobalMarket\GlobalMarket\bin\Entities.pdb
 C:\Users\karandhir\source\repos\GlobalMarket\GlobalMarket\bin\Entities.dll.config
 C:\Users\karandhir\source\repos\GlobalMarket\GlobalMarket\obj\Debug\Presentation.csprojAssemblyReference.cache

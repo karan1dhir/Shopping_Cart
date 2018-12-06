@@ -34,6 +34,9 @@
     <Reference Include="AutoMapper, Version=8.0.0.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
       <HintPath>..\packages\AutoMapper.8.0.0\lib\net461\AutoMapper.dll</HintPath>
     </Reference>
+    <Reference Include="BCrypt.Net, Version=0.1.5073.29922, Culture=neutral, PublicKeyToken=6bcd409ee6bc9292, processorArchitecture=MSIL">
+      <HintPath>..\packages\BCrypt-Official.0.1.109\lib\BCrypt.Net.dll</HintPath>
+    </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
@@ -54,8 +57,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Exceptions\InvalidLoginException.cs" />
+    <Compile Include="Exceptions\NoRolesFoundException.cs" />
+    <Compile Include="PasswordHasher.cs" />
     <Compile Include="BusinessObjects\ProductBusinessContext.cs" />
     <Compile Include="BusinessObjects\UserBusinessContext.cs" />
+    <Compile Include="Exceptions\UserNameAlreadyExistsException.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -75,6 +82,9 @@
       <Project>{a677a8e9-1210-4102-bb48-a9238d76d016}</Project>
       <Name>Shared</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="LICENSE.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
