@@ -13,12 +13,36 @@ namespace GlobalMarket
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
+
+            routes.MapRoute(
+                name: "Login",
+                url: "Login",
+                new { controller = "Login", action = "Login" }
+            );
+
+            routes.MapRoute(
+                name: "ProductDetail",
+                url: "Products/ProductDetail/{ProductID}",
+                new { controller = "Products", action = "ProductDetail" }
+            );
+
+            routes.MapRoute(
+             name: "Products",
+             url: "Products/{CategoryName}",
+             new { controller = "Products", action = "CategoryProducts" }
+         );
             routes.MapRoute(
                 name: "Register",
                 url: "Register",
                 defaults: new { controller = "Register", action = "Register" }
                 );
-  
+
+            routes.MapRoute(
+              name: "Orders",
+              url: "MyOrders",
+              new { controller = "User", action = "Orders" }
+          );
+
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",

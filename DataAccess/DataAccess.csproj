@@ -54,8 +54,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DBObjects\AddressDatabaseContext.cs" />
+    <Compile Include="DBObjects\CartDatabaseContext.cs" />
+    <Compile Include="DBObjects\OrderDatabaseContext.cs" />
     <Compile Include="DBObjects\ProductDatabaseContext.cs" />
     <Compile Include="DBObjects\UserDatabase.cs" />
+    <Compile Include="Exceptions\AlreadyPresentException.cs" />
+    <Compile Include="Exceptions\OrderLimitExceededException.cs" />
+    <Compile Include="Exceptions\ProductNotFoundException.cs" />
+    <Compile Include="Exceptions\QuantityUnavailableException.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

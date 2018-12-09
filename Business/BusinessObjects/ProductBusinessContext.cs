@@ -1,6 +1,10 @@
-﻿using DataAccess.DBObjects;
+﻿using Business.Exceptions;
+using DataAccess.DBObjects;
+using DataAccess.Exceptions;
 using Entities;
 using Shared.DTO.Analytics;
+using Shared.DTO.Category;
+using Shared.DTO.Product;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,7 +15,13 @@ namespace Business.BusinessObjects
 {
    public class ProductBusinessContext
     {
-        ProductDatabaseContext productDatabaseContext = new ProductDatabaseContext();
+
+        ProductDatabaseContext productDatabaseContext;
+        public ProductBusinessContext()
+        {
+           productDatabaseContext = new ProductDatabaseContext();
+
+        }
 
         public AnalyticsDTO GetTopProductsByCart()
         {
@@ -30,6 +40,39 @@ namespace Business.BusinessObjects
                 counter++;
             }
             return analyticsDTO;
+        }
+        public CategoryProductDTO GetCategoryProducts(string CategoryName)
+        {
+            try
+            {
+                bool CategoryExist = productDatabaseContext.CategoryExists(CategoryName);
+            }
+            catch(NotFoundException ex)
+            {
+                throw new CatgoryDoesNotExistsException();
+            }
+            CategoryProductDTO categoryProductDTO = productDatabaseContext.GetCategoryProducts(CategoryName);
+            return categoryProductDTO;
+
+        }
+        public ProductDTO GetProduct(Guid ProductID)
+        {
+
+            try
+            {
+                bool exists = productDatabaseContext.ProductExists(ProductID);
+            }
+            catch(NotFoundException ex)
+            {
+                throw new ProductDoesNotExistsException();
+            }
+            catch(Exception ex)
+            {
+                throw new Exception("Unkonwn error");
+            }
+
+            ProductDTO productDTO = productDatabaseContext.GetProduct(ProductID);
+            return productDTO;
         }
     }
 }

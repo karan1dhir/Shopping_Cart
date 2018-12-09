@@ -34,7 +34,7 @@ namespace GlobalMarket.ViewModels
         public string Email { get; set; }
 
         [Required]
-        //[RegularExpression(@"\d{10}", ErrorMessage = "Please enter a valid Mobile Number")]
+        [RegularExpression(@"\d{10}", ErrorMessage = "Please enter a valid Mobile Number")]
         public string PhoneNumber { get; set; }
 
 

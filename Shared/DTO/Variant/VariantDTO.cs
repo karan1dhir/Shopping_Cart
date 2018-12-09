@@ -11,11 +11,12 @@ namespace Shared.DTO.Variant
     {
         public Guid ID { get; set; }
         public string SKU { get; set; }
-        public float ListingPrice {get ; set;}
-        public float Discount { get; set; }
+        public double ListingPrice {get ; set;}
+        public double Discount { get; set; }
         public int QuantitySold { get; set; }
         public int Inventory { get; set; }
         public ProductDTO Product { get; set; }
         public IEnumerable<VariantImageDTO> VariantImages { get; set; }
+        public double DiscountedPrice { get; set; }
     }
 }

@@ -55,7 +55,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DTO\Analytics\AnalyticsDTO.cs" />
+    <Compile Include="DTO\Cart\CartVariantDTO.cs" />
+    <Compile Include="DTO\Cart\CartVariantItemsDTO.cs" />
+    <Compile Include="DTO\Cart\CartVariantMappingDTO.cs" />
     <Compile Include="DTO\Category\CategoryProductDTO.cs" />
+    <Compile Include="DTO\Order\AddressDTO.cs" />
     <Compile Include="DTO\Product\ProductDTO.cs" />
     <Compile Include="DTO\Role\RoleBasicDTO.cs" />
     <Compile Include="DTO\Role\RoleDTO.cs" />

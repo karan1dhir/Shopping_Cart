@@ -1,0 +1,72 @@
+﻿@model GlobalMarket.ViewModels.ProductViewModel
+@{
+    ViewBag.Title = "ProductDetail";
+}
+<h2>ProductDetail</h2>
+<div class="colorlib-product">
+    <div class="container">
+        <div class="row row-pb-lg product-detail-wrap">
+            <div class="col-sm-8">
+                <div class="text-center" style="margin-top:50px;">
+                    <a href="#" class="prod-img">
+                        <img src="@Model.Variants.First().VariantImages.First()" class="img-fluid" alt="Free html5 bootstrap 4 template" style="max-height: 300px; max-width: 300px">
+                    </a>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="product-desc">
+                    <h3>@Model.Name</h3>
+                    <p class="price">
+                        @if (Model.Variants.First().Discount != 0)
+                        {
+                            <strike>$@Model.Variants.First().ListingPrice</strike><span style="display:inline">  $@((Model.Variants.First().ListingPrice * (100 - Model.Variants.First().Discount) / 100))</span>
+                        }
+                        else
+                        {
+                            <span>$@Model.Variants.First().ListingPrice</span>
+                        }
+                    </p>
+                    <p>Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic life One day however a small line of blind text by the name of Lorem Ipsum decided to leave for the far World of Grammar.</p>
+                    <p><b>The order quantity of this product is limited to @Model.OrderLimit per user.</b></p>
+                    <h5>
+                        @if (Model.Variants.First().Inventory <= 7)
+                        {<span>Only</span>} @(Model.Variants.First().Inventory - Model.Variants.First().QuantitySold) left in stock
+                    </h5>
+
+                    @using (Html.BeginForm("AddItem", "Cart", new { ProductID = Model.ID, Inventory = Model.Variants.First().Inventory, OrderLimit = Model.OrderLimit }, FormMethod.Post, new { enctype = "multipart/form-data" }))
+                    {
+                        <div class="input-group mb-4">
+                            <span class="input-group-btn">
+                                <button type="button" class="quantity-left-minus btn" data-type="minus" data-field="">
+                                    <i class="icon-minus2"></i>
+                                </button>
+                            </span>
+
+
+                            <input type="text" id="quantity" name="Quantity" class="form-control input-number" value="1" min="1" max="100">
+                            <span class="input-group-btn ml-1">
+                                <button class="quantity-right-plus btn" type="button" data-type="plus" data-field="">
+                                    <i class="icon-plus2"></i>
+                                </button>
+                            </span>
+                            <select name="VariantID" id="variant" class="form-control">
+                                @foreach (var Variant in Model.Variants)
+                                {
+                                    <option value=@Variant.ID>@Variant.ID</option>
+                                }
+                            </select>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-sm-12 text-center">
+                                <p class="addtocart"><button class="btn btn-primary btn-addtocart" type="submit"><i class="icon-shopping-cart"></i> Add to Cart</button></p>
+                            </div>
+                        </div>
+                    }
+                    <div id="Target"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
