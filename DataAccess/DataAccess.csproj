@@ -56,6 +56,7 @@
   <ItemGroup>
     <Compile Include="DBObjects\AddressDatabaseContext.cs" />
     <Compile Include="DBObjects\CartDatabaseContext.cs" />
+    <Compile Include="DBObjects\CategoryDatabaseContext.cs" />
     <Compile Include="DBObjects\OrderDatabaseContext.cs" />
     <Compile Include="DBObjects\ProductDatabaseContext.cs" />
     <Compile Include="DBObjects\UserDatabase.cs" />

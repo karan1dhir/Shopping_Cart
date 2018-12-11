@@ -39,52 +39,9 @@
 </head>
 <body>
     <div class="colorlib-loader"></div>
-    @*<div class="navbar navbar-inverse navbar-fixed-top">
-            <div class="container">
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                    @Html.ActionLink("BlueVends", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
-                </div>
-                <div class="navbar-collapse collapse">
-                    <ul class="nav navbar-nav">
-                        @if (ViewBag.LoggedIn == null)
-                        {
-                            <li>@Html.ActionLink("Sign-In", "Login", "Login")</li>
-                            <li>@Html.ActionLink("Sign-Up", "Register", "Register")</li>
-                        }
-                        else
-                        {
-                            <li>@Html.ActionLink("My Orders", "Orders", "User")</li>
-                            <li>@Html.ActionLink("Sign Out", "Logout", "User")</li>
-                        }
-                        @using (Html.BeginForm("SearchProducts", "Products", FormMethod.Get))
-                        {
-                            <li>
-                                @Html.TextBox("SearchString") <br />
-                                <input type="submit" value="Search Products" />
-                            </li>
-                        }
-                    </ul>
-                </div>
-            </div>
-        </div>
-        <div><h2>@ViewBag.LoggedIn</h2></div>*@
-
-
-
+    <div><h2>@ViewBag.LoggedIn</h2></div>
     <div class="container body-content">
-
-
         <div class="colorlib-loader"></div>
-   
-
-
-
-
         <div>
             <nav class="colorlib-nav" role="navigation">
                 <div class="top-menu">
@@ -102,24 +59,13 @@
                                         <button class="btn btn-primary submit-search text-center" type="submit"><i class="icon-search"></i></button>
                                     </div>
                                 }
-
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-sm-12 text-left menu-1">
                                 <ul>
                                     <li class="active">@Html.ActionLink("Home", "Index", "Home")</li>
-                                    <li><a href="@Url.Action("CategoryProducts", "Products", new { CategoryName = "Clothing" })">Clothing</a></li>
-                                    <li><a href="@Url.Action("CategoryProducts", "Products", new { CategoryName = "Footwear" })">Footwear</a></li>
-                                    <li><a href="@Url.Action("CategoryProducts", "Products", new { CategoryName = "Jewellery" })">Jewellery</a></li>
 
-
-
-                                    @*<li>@Html.ActionLink("My Orders", "MyOrders", "Order")</li>
-                                    <li>@Html.ActionLink("Sign Out", "Logout", "User")</li>
-
-                                     <li>@Html.ActionLink("Sign-In", "Login", "Login")</li>
-                                     <li>@Html.ActionLink("Sign-Up", "Register", "Register")</li>*@
                                     @if (Session["UserID"] == null)
                                     {
                                         <li>@Html.ActionLink("Sign-In", "Login", "Login")</li>
@@ -134,22 +80,18 @@
                                 </ul>
                             </div>
                         </div>
+
                     </div>
                 </div>
+                @Html.Action("GetCategories", "Category")
             </nav>
         </div>
-
         <hr />
         @RenderBody()
-
-
         <footer>
                 <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
             </footer>
     </div>
-
-
-
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     <script src="~/Scripts/bootstrap.js"></script>

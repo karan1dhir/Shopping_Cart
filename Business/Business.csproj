@@ -58,12 +58,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BusinessObjects\CartBusinessContext.cs" />
+    <Compile Include="BusinessObjects\CategoryBusinessContext.cs" />
     <Compile Include="BusinessObjects\OrderBusinessContext.cs" />
     <Compile Include="Exceptions\CatgoryDoesNotExistsException.cs" />
     <Compile Include="Exceptions\InvalidLoginException.cs" />
     <Compile Include="Exceptions\ItemAlreadyInCartException.cs" />
     <Compile Include="Exceptions\NoOrderException.cs" />
     <Compile Include="Exceptions\NoRolesFoundException.cs" />
+    <Compile Include="Exceptions\NotFoundException.cs" />
     <Compile Include="Exceptions\ProductDoesNotExistsException.cs" />
     <Compile Include="PasswordHasher.cs" />
     <Compile Include="BusinessObjects\ProductBusinessContext.cs" />

@@ -1,0 +1,10 @@
+﻿@model GlobalMarket.ViewModels.CategoriesViewModel
+            <ul>
+
+                @foreach (string category in Model.categories)
+                {
+                    <li>@Html.ActionLink(category, "CategoryProducts", "Category",new { CategoryName = category},null)</li>
+                }
+            </ul>
+
+

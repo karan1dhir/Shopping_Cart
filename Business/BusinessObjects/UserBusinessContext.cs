@@ -1,6 +1,5 @@
 ﻿using Business.Exceptions;
 using DataAccess.DBObjects;
-using DataAccess.Exceptions;
 using Entities;
 using Shared.DTO.Role;
 using Shared.DTO.User;
