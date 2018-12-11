@@ -13,8 +13,8 @@ namespace GlobalMarket.ViewModels
         public float Discount { get; set; }
         public int QuantitySold { get; set; }
         public int Inventory { get; set; }
+        public double DiscountedPrice { get; set; }
         public ProductViewModel Product { get; set; }
-        public IEnumerable<VariantImageDTO> VariantImages { get; set; }
-
+        public IEnumerable<VariantImageViewModel> VariantImages { get; set; }
     }
 }

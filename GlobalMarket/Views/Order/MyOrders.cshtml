@@ -1,0 +1,20 @@
+﻿@model GlobalMarket.ViewModels.OrdersViewModel
+@{
+    ViewBag.Title = "MyOrders";
+}
+
+<h2>MyOrders</h2>
+
+<div class="row">
+    @foreach (var order in Model.Orders)
+    {
+        <div class="col-md-7">
+            <h4>@order.OrderDate.ToString("dd/MM/yyyy")</h4>
+            <p><b>Total : </b>$@order.TotalAmount</p>
+            <p><b>Status : </b>@order.Status</p>
+            <hr />
+        </div>
+        <hr />
+    }
+</div>
+

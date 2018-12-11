@@ -11,6 +11,7 @@ using System.Data.Entity;
 using System.Text;
 using System.Threading.Tasks;
 using DataAccess.Exceptions;
+using Shared.DTO.Cart;
 
 namespace DataAccess.DBObjects
 {
@@ -23,6 +24,8 @@ namespace DataAccess.DBObjects
         IMapper ProductMapper;
         IMapper VariantMapper;
         IMapper CategoryProductMapper;
+        IMapper ProductSearchMapper;
+
 
         public ProductDatabaseContext()
         {
@@ -33,6 +36,11 @@ namespace DataAccess.DBObjects
                 cfg.CreateMap<Variant, VariantDTO>();
                 cfg.CreateMap<Product, ProductDTO>();
                 cfg.CreateMap<Category, CategoryProductDTO>().ForMember(dest => dest.Products, opt => opt.MapFrom(src => src.Products));
+            });
+
+            var productsSearchDTOConfig = new MapperConfiguration(cfg => {
+                cfg.CreateMap<Product, ProductDTO>();
+                cfg.CreateMap<Variant, VariantDTO>();
             });
 
             var productDTOConfig = new MapperConfiguration(cfg =>{
@@ -54,7 +62,7 @@ namespace DataAccess.DBObjects
             AnalyticsMapper = new Mapper(AnalyticsConfig);
             ProductMapper = new Mapper(productDTOConfig);
             VariantMapper = new Mapper(VariantDTOConfig);
-            
+            ProductSearchMapper = new Mapper(productsSearchDTOConfig);
         }
 
         public string GetCategoryName(Guid categoryID)
@@ -64,7 +72,24 @@ namespace DataAccess.DBObjects
             string name = category.Name;
             return name;
         }
-
+        public void UpdateInventory(CartVariantItemsDTO cartVariantItemsDTO)
+        {
+            foreach (var cartItem in cartVariantItemsDTO.CartItems)
+            {
+                shoppingCartEntities.Variants.FirstOrDefault(p => p.ID == cartItem.Variant.ID).Inventory -= cartItem.Quantity;
+                shoppingCartEntities.Variants.FirstOrDefault(p => p.ID == cartItem.Variant.ID).QuantitySold += cartItem.Quantity;
+                shoppingCartEntities.Categories.FirstOrDefault(c => c.ID == cartItem.Variant.Product.Category.ID).ProductsSold += cartItem.Quantity;
+                shoppingCartEntities.SaveChanges();
+            }
+            return;
+        }
+        public ProductsSearchResultDTO GetProductsWithString(string SearchString)
+        {
+            IEnumerable<Product> searchResults = shoppingCartEntities.Products.Where(p => p.Name.Contains(SearchString) || p.Description.Contains(SearchString)).Include(p => p.Category);
+            ProductsSearchResultDTO productsSearchResultDTO = new ProductsSearchResultDTO();
+            productsSearchResultDTO.Products = ProductSearchMapper.Map<IEnumerable<Product>, IEnumerable<ProductDTO>>(searchResults);
+            return productsSearchResultDTO;
+        }
         public bool ProductExists(Guid ProductID)
         {
             Product product = shoppingCartEntities.Products.Find(ProductID);

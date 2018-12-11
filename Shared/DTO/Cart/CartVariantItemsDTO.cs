@@ -9,6 +9,7 @@ namespace Shared.DTO.Cart
     public class CartVariantItemsDTO
     {
         public double SubTotal { get; set; }
+        public double TotalDiscount { get; set; }
         public IEnumerable<CartVariantDTO> CartItems { get; set; }
 
     }

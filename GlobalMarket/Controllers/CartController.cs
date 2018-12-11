@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Business.BusinessObjects;
 using Business.Exceptions;
+using GlobalMarket.ActionFilter;
 using GlobalMarket.ViewModels;
 using Shared.DTO.Cart;
 using Shared.DTO.Category;
@@ -14,6 +15,7 @@ using System.Web.Mvc;
 
 namespace GlobalMarket.Controllers
 {
+    [UserAuthenticationFilter]
     public class CartController : Controller
     {
         // GET: Cart
@@ -35,6 +37,7 @@ namespace GlobalMarket.Controllers
                 cfg.CreateMap<CartVariantDTO, CartVarientViewModel>();
                 cfg.CreateMap<CartVariantItemsDTO, CartVariantItemsViewModel>();
                 cfg.CreateMap<CategoryProductDTO, CategoryProductViewModel>();
+                cfg.CreateMap<VariantImageDTO, VariantImageViewModel>();
             });
 
 

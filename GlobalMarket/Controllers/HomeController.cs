@@ -4,6 +4,7 @@ using GlobalMarket.ViewModels;
 using Shared.DTO.Analytics;
 using Shared.DTO.Category;
 using Shared.DTO.Product;
+using Shared.DTO.Variant;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,6 +22,8 @@ namespace GlobalMarket.Controllers
                 cfg.CreateMap<AnalyticsDTO, AnalyticsViewModel>();
                 cfg.CreateMap<CategoryProductDTO, CategoryProductViewModel>();
                 cfg.CreateMap<ProductDTO, ProductViewModel>();
+                cfg.CreateMap<VariantDTO, VariantViewModel>();
+                cfg.CreateMap<VariantImageDTO, VariantImageViewModel>();
             });
             AnalyticsMapper = new Mapper(AnalyticsConfig);
         }

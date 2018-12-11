@@ -74,5 +74,18 @@ namespace Business.BusinessObjects
             ProductDTO productDTO = productDatabaseContext.GetProduct(ProductID);
             return productDTO;
         }
+        public ProductsSearchResultDTO GetProductWithString(string SearchString)
+        {
+            ProductsSearchResultDTO productsSearchResultDTO = new ProductsSearchResultDTO();
+            try
+            {
+                productsSearchResultDTO = productDatabaseContext.GetProductsWithString(SearchString);
+                return productsSearchResultDTO;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Unknown Error");
+            }
+        }
     }
 }

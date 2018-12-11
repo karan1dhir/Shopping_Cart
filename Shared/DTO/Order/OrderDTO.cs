@@ -9,7 +9,8 @@ namespace Shared.DTO.Order
     public class OrderDTO
     {
       public int StatusID { get; set; }
-      public double TotalAmont { get; set; }
+      public double TotalAmount { get; set; }
+      public string Status { get; set; }
       public AddressDTO Address { get; set; }
       public System.DateTime OrderDate { get; set; }
       public IEnumerable<OrderProductDTO> OrderPlaceds { get; set; }    

@@ -26,13 +26,15 @@ namespace DataAccess.DBObjects
         }
 
         public Guid AddAddress(Guid UserID, AddressDTO addressDTO)
-        {
-            Address address = AddressMapper.Map<AddressDTO, Address>(addressDTO);
-            UserAddressMapping userAddressMapping = new UserAddressMapping();
-            userAddressMapping.UserID = UserID;
-            userAddressMapping.AddressID = Guid.NewGuid();
-            shoppingCartEntities.SaveChanges();
-            return userAddressMapping.UserID.GetValueOrDefault();
+        { 
+          Guid id = Guid.NewGuid();
+          Guid mappingID = Guid.NewGuid();
+          Address address = new Address { ID = id, AddressLine1 = addressDTO.AddressLine1, AddressLine2 = addressDTO.AddressLine2, City = addressDTO.City, Pin = addressDTO.Pin, State = addressDTO.State, Country = addressDTO.Country };
+          shoppingCartEntities.Addresses.Add(address);
+          UserAddressMapping userAddressMapping = new UserAddressMapping { ID = mappingID, AddressID = id, UserID = UserID };
+          shoppingCartEntities.UserAddressMappings.Add(userAddressMapping);
+          shoppingCartEntities.SaveChanges();
+          return id; 
         }
     }
 }

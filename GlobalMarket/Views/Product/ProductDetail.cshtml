@@ -9,7 +9,7 @@
             <div class="col-sm-8">
                 <div class="text-center" style="margin-top:50px;">
                     <a href="#" class="prod-img">
-                        <img src="@Model.Variants.First().VariantImages.First()" class="img-fluid" alt="Free html5 bootstrap 4 template" style="max-height: 300px; max-width: 300px">
+                        <img src= "@Model.Variants.First().VariantImages.First().ImageURL" class="img-fluid" alt="Free html5 bootstrap 4 template" style="max-height: 300px; max-width: 300px" id="imageId">
                     </a>
                 </div>
             </div>
@@ -49,10 +49,10 @@
                                     <i class="icon-plus2"></i>
                                 </button>
                             </span>
-                            <select name="VariantID" id="variant" class="form-control">
+                            <select name="VariantID" id="variant" class="form-control" onchange="ChangeData(this)">
                                 @foreach (var Variant in Model.Variants)
                                 {
-                                    <option value=@Variant.ID>@Variant.ID</option>
+                                    <option value=@Variant>@Variant.ID</option>
                                 }
                             </select>
                         </div>
@@ -69,4 +69,10 @@
         </div>
     </div>
 </div>
+    <script>
+        function ChangeData(selectedID) {
+
+   
+    }
+</script>
 

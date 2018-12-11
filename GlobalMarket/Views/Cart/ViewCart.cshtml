@@ -7,24 +7,7 @@
 
 <div class="colorlib-product">
     <div class="container">
-        <div class="row row-pb-lg">
-            <div class="col-md-10 offset-md-1">
-                <div class="process-wrap">
-                    <div class="process text-center active">
-                        <p><span>01</span></p>
-                        <h3>Shopping Cart</h3>
-                    </div>
-                    <div class="process text-center">
-                        <p><span>02</span></p>
-                        <h3>Checkout</h3>
-                    </div>
-                    <div class="process text-center">
-                        <p><span>03</span></p>
-                        <h3>Order Complete</h3>
-                    </div>
-                </div>
-            </div>
-        </div>
+
         <div class="row row-pb-lg">
             <div class="col-md-12">
                 <div class="product-name d-flex">
@@ -48,7 +31,8 @@
                 {
                     <div class="product-cart d-flex">
                         <div class="one-forth">
-                            <div class="product-img" style="background-image: url(@cartItem.Variant.VariantImages.First());">
+                            <div class="product-img">
+                                <img src="@cartItem.Variant.VariantImages.FirstOrDefault().ImageURL" style="width:250px; height:200px;" />
                             </div>
                             <div class="display-tc">
                                 <h3>@cartItem.Variant.Product.Name</h3>
@@ -56,7 +40,7 @@
                         </div>
                         <div class="one-eight text-center">
                             <div class="display-tc">
-                                <span class="price">$@cartItem.Variant.ListingPrice</span>
+                                <span class="price">$@cartItem.Variant.DiscountedPrice</span>
                             </div>
                         </div>
                         <div class="one-eight text-center">
@@ -67,7 +51,7 @@
                         <div class="one-eight text-center">
 
                             <div class="display-tc">
-                                <span class="price">$@(@cartItem.Variant.ListingPrice * @cartItem.Quantity)</span>
+                                <span class="price">$@(@cartItem.Variant.DiscountedPrice * @cartItem.Quantity)</span>
                             </div>
                         </div>
                         <div class="one-eight text-center">
@@ -99,12 +83,11 @@
                         <div class="col-sm-4 text-center">
                             <div class="total">
                                 <div class="sub">
-                                    <p><span>Subtotal:</span> <span>$@Model.SubTotal</span></p>
-                                    <p><span>Delivery:</span> <span>$100.00</span></p>
-                                    @*<p><span>Discount:</span> <span>$@Model.TotalAmount - @Model.TotalDiscount </span></p>*@
+                                    <p><span>Subtotal:</span> <span>$@((@Model.TotalDiscount + @Model.SubTotal))</span></p>
+                                    <p><span>Discount:</span> <span>$@Model.TotalDiscount </span></p>
                                 </div>
                                 <div class="grand-total">
-                                    @*<p><span><strong>Total:</strong></span> <span>$@Model.TotalAmount </span></p>*@
+                                    <p><span><strong>Total:</strong></span> <span>$@Model.SubTotal </span></p>
                                 </div>
                             </div>
                         </div>
@@ -114,4 +97,3 @@
         </div>
     </div>
 </div>
-

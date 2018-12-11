@@ -7,7 +7,8 @@ namespace GlobalMarket.ViewModels
 {
     public class CartVariantItemsViewModel
     {
-        public float SubTotal { get; set; }
+        public double SubTotal { get; set; }
+        public double TotalDiscount { get; set; }
         public IEnumerable<CartVarientViewModel> CartItems { get; set; }
     }
 }

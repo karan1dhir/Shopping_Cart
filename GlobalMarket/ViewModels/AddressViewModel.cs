@@ -17,8 +17,8 @@ namespace GlobalMarket.ViewModels
         public string AddressLine2 { get; set; }
 
         [Required]
-        [StringLength(6, MinimumLength = 5)]
-        public string Pin { get; set; }
+        //[RegularExpression("^(\d{5}|\d{6})$", ErrorMessage = "Name may only contain alphabetic characters and space")]
+        public int Pin { get; set; }
 
         [Required]
         public string City { get; set; }

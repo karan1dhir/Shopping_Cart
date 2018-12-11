@@ -60,7 +60,12 @@
     <Compile Include="DTO\Cart\CartVariantMappingDTO.cs" />
     <Compile Include="DTO\Category\CategoryProductDTO.cs" />
     <Compile Include="DTO\Order\AddressDTO.cs" />
+    <Compile Include="DTO\Order\OrderDTO.cs" />
+    <Compile Include="DTO\Order\OrderPlacedVariantDTO.cs" />
+    <Compile Include="DTO\Order\OrderProductDTO.cs" />
+    <Compile Include="DTO\Order\OrdersDTO.cs" />
     <Compile Include="DTO\Product\ProductDTO.cs" />
+    <Compile Include="DTO\Product\ProductsSearchResultDTO.cs" />
     <Compile Include="DTO\Role\RoleBasicDTO.cs" />
     <Compile Include="DTO\Role\RoleDTO.cs" />
     <Compile Include="DTO\User\UserBasicDTO.cs" />

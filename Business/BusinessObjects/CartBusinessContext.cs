@@ -42,16 +42,19 @@ namespace Business.BusinessObjects
          public CartVariantItemsDTO GetCart(Guid UserID)    
         {
             CartVariantItemsDTO cartVariantItemsDTO = cartDatabaseContext.GetCart(UserID);
-            float subtotal = new float();
+            double subtotal = new double();
+            double Totaldiscount = new double();
             foreach(var cartVariants in cartVariantItemsDTO.CartItems)
             {
                 int Quantity = cartVariants.Quantity;
-                float Discount = cartVariants.Variant.Discount;
-                float Price = cartVariants.Variant.ListingPrice;
+                double Discount = cartVariants.Variant.Discount;
+                double Price = cartVariants.Variant.ListingPrice;
                 cartVariants.Variant.DiscountedPrice = (Price * (100 - Discount) / 100);
-                float DiscountedPrice = cartVariants.Variant.DiscountedPrice;
+                double DiscountedPrice = cartVariants.Variant.DiscountedPrice;
                 subtotal += DiscountedPrice * Quantity;
+                Totaldiscount += Discount * Price / 100;
             }
+            cartVariantItemsDTO.TotalDiscount = Totaldiscount;
             cartVariantItemsDTO.SubTotal = subtotal;
             return cartVariantItemsDTO;
         }

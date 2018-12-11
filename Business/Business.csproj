@@ -62,6 +62,7 @@
     <Compile Include="Exceptions\CatgoryDoesNotExistsException.cs" />
     <Compile Include="Exceptions\InvalidLoginException.cs" />
     <Compile Include="Exceptions\ItemAlreadyInCartException.cs" />
+    <Compile Include="Exceptions\NoOrderException.cs" />
     <Compile Include="Exceptions\NoRolesFoundException.cs" />
     <Compile Include="Exceptions\ProductDoesNotExistsException.cs" />
     <Compile Include="PasswordHasher.cs" />

@@ -44,6 +44,12 @@ namespace GlobalMarket
           );
 
             routes.MapRoute(
+              name: "ProductSearch",
+              url: "Product/SearchProducts",
+              new { controller = "Product", action = "SearchProducts" }
+          );
+
+            routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }

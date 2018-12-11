@@ -95,7 +95,7 @@
                             </div>
                             <div class="col-sm-5 col-md-3">
 
-                                @using (Html.BeginForm("SearchProducts", "Products", FormMethod.Get, new { @class = "search-wrap" }))
+                                @using (Html.BeginForm("SearchProducts", "Product", FormMethod.Get, new { @class = "search-wrap" }))
                                 {
                                     <div class="form-group">
                                         <input type="search" class="form-control search" placeholder="Search" name="SearchString">
@@ -112,7 +112,15 @@
                                     <li><a href="@Url.Action("CategoryProducts", "Products", new { CategoryName = "Clothing" })">Clothing</a></li>
                                     <li><a href="@Url.Action("CategoryProducts", "Products", new { CategoryName = "Footwear" })">Footwear</a></li>
                                     <li><a href="@Url.Action("CategoryProducts", "Products", new { CategoryName = "Jewellery" })">Jewellery</a></li>
-                                    @if (ViewBag.IsLoggedIn == null)
+
+
+
+                                    @*<li>@Html.ActionLink("My Orders", "MyOrders", "Order")</li>
+                                    <li>@Html.ActionLink("Sign Out", "Logout", "User")</li>
+
+                                     <li>@Html.ActionLink("Sign-In", "Login", "Login")</li>
+                                     <li>@Html.ActionLink("Sign-Up", "Register", "Register")</li>*@
+                                    @if (Session["UserID"] == null)
                                     {
                                         <li>@Html.ActionLink("Sign-In", "Login", "Login")</li>
                                         <li>@Html.ActionLink("Sign-Up", "Register", "Register")</li>

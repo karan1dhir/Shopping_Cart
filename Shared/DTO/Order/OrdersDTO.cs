@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace Shared.DTO.Order
 {
-    class OrdersDTO
+   public class OrdersDTO
     {
+        public IEnumerable<OrderDTO> Orders { get; set; }
     }
 }

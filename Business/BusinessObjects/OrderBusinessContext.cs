@@ -1,4 +1,5 @@
-﻿using DataAccess.DBObjects;
+﻿using Business.Exceptions;
+using DataAccess.DBObjects;
 using Shared.DTO.Cart;
 using Shared.DTO.Order;
 using System;
@@ -14,13 +15,15 @@ namespace Business.BusinessObjects
         OrderDatabaseContext orderDataBaseContext;
         AddressDatabaseContext addressDatabaseContext;
         CartDatabaseContext cartDataBaseContext;
-
+        ProductDatabaseContext productDatabaseContext;
 
         public OrderBusinessContext()
         {
             orderDataBaseContext = new OrderDatabaseContext(); 
             addressDatabaseContext =  new AddressDatabaseContext();
             cartDataBaseContext = new CartDatabaseContext(); 
+            productDatabaseContext = new ProductDatabaseContext();
+
         }
 
         public bool PlaceOrder(Guid UserID, AddressDTO addressDTO)
@@ -39,9 +42,26 @@ namespace Business.BusinessObjects
             }
             cartVariantItemsDTO.SubTotal = subtotal;
             orderDataBaseContext.PlaceOrder(UserID, cartVariantItemsDTO, AddressID);
-
+            productDatabaseContext.UpdateInventory(cartVariantItemsDTO);
+            cartDataBaseContext.EmptyCart(UserID);
+            return true;
+        }
+        public OrdersDTO GetOrders(Guid UserID)
+        {
+            OrdersDTO newOrdersDTO = orderDataBaseContext.GetOrders(UserID);
+            if (newOrdersDTO.Orders.ToList().Count == 0)
+            {
+                throw new NoOrderException();
+            }
+            else
+            {
+                foreach (OrderDTO order in newOrdersDTO.Orders)
+                {
+                    order.Status = orderDataBaseContext.GetOrderStatus(order.StatusID);
+                }
+                return newOrdersDTO;
+            }
 
         }
-
     }
 }
