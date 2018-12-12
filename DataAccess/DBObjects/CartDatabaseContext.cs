@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using AutoMapper;
 using Shared.DTO.Variant;
 using Shared.DTO.Product;
+using System.Diagnostics;
 
 namespace DataAccess.DBObjects
 {
@@ -95,6 +96,7 @@ namespace DataAccess.DBObjects
         public CartVariantItemsDTO GetCart(Guid UserID)
         {
             var carts = shoppingCartEntities.CartVariantMappings.Include(c => c.Variant.Product).Where(c => c.CartID == UserID).ToList();
+            Debug.WriteLine(shoppingCartEntities.CartVariantMappings.Include(c => c.Variant.Product).Where(c => c.CartID == UserID));
             CartVariantItemsDTO cartVariantItemsDTO = new CartVariantItemsDTO();
             cartVariantItemsDTO.CartItems = CartItemsMapper.Map<IEnumerable<CartVariantMapping>, IEnumerable<CartVariantDTO>>(carts);
             return cartVariantItemsDTO;

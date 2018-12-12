@@ -4,6 +4,7 @@ using Entities;
 using Shared.DTO.Analytics;
 using Shared.DTO.Category;
 using Shared.DTO.Product;
+using Shared.DTO.Variant;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -85,6 +86,11 @@ namespace Business.BusinessObjects
             {
                 throw new Exception("Unknown Error");
             }
+        }
+        public VariantDTO GetVariant(Guid variantID)
+        {
+            VariantDTO variantDTO = productDatabaseContext.GetVariant(variantID);
+            return variantDTO;
         }
     }
 }

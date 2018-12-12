@@ -4,6 +4,7 @@ using Entities;
 using Shared.DTO.Role;
 using Shared.DTO.User;
 using System;
+using System.Data.Entity;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -93,7 +94,7 @@ namespace DataAccess.DBObjects
 
         public RoleBasicDTO GetRole()
         {
-            List<Role> roles = shoppingCartEntities.Roles.ToList();
+            List<Role> roles = shoppingCartEntities.Roles.Where(p=> p.Name != "ADMIN").ToList();
             IEnumerable<Role> convertRoles= roles.AsEnumerable<Role>();
             RoleBasicDTO roleBasicDTO = new RoleBasicDTO();
             roleBasicDTO.roles = roleMapRoleBasicDTOMapper.Map<IEnumerable<Role>, IEnumerable<RoleDTO>>(convertRoles);
@@ -104,6 +105,20 @@ namespace DataAccess.DBObjects
             else
             {
                 throw new NotFoundException();
+            }
+        }
+        public bool CheckAdmin(Guid UserID)
+        {
+            User user = shoppingCartEntities.Users.Where(u => u.ID == UserID).Include(u => u.Role).First();
+            string role = shoppingCartEntities.Roles.Where(r => r.ID == user.RoleID).Select(r => r.Name).FirstOrDefault();
+
+            if (role == "ADMIN")
+            {
+                return true;
+            }
+            else
+            {
+                return false;
             }
         }
     }

@@ -23,24 +23,24 @@ namespace GlobalMarket.Controllers
             return RedirectToAction("Index", "Home");
         }
 
-        //public ActionResult CheckAdmin()
-        //{
+        public ActionResult CheckAdmin()
+        {
 
-        //    try
-        //    {
-        //        if ()
-        //        {
-        //            return View("Admin");
-        //        }
-        //        else
-        //        {
-        //            return View("NotAdmin");
-        //        }
-        //    }
-        //    catch (Exception)
-        //    {
-        //        return View("InternalError");
-        //    }
-        //}
+            try
+            {
+                if (userBusinessContext.CheckAdmin(new Guid(Session["UserID"].ToString())))
+                {
+                    return View("Admin");
+                }
+                else
+                {
+                    return View("NotAdmin");
+                }
+            }
+            catch (Exception)
+            {
+                return View("InternalError");
+            }
+        }
     }
 }

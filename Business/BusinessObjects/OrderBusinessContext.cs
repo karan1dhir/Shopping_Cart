@@ -63,5 +63,10 @@ namespace Business.BusinessObjects
             }
 
         }
+        public OrderDTO GetOrder(Guid orderID)
+        {
+            OrderDTO order = orderDataBaseContext.GetOrder(orderID);
+            return order;
+        }
     }
 }

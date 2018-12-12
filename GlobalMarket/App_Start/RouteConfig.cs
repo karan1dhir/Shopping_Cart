@@ -40,7 +40,7 @@ namespace GlobalMarket
             routes.MapRoute(
               name: "Orders",
               url: "MyOrders",
-              new { controller = "User", action = "Orders" }
+              new { controller = "Order", action = "MyOrders" }
           );
 
             routes.MapRoute(
@@ -48,7 +48,17 @@ namespace GlobalMarket
               url: "Product/SearchProducts",
               new { controller = "Product", action = "SearchProducts" }
           );
+            routes.MapRoute(
+              name: "Admin",
+              url: "admin",
+              new { controller = "User", action = "CheckAdmin" }
+          );
 
+            routes.MapRoute(
+             name: "Order",
+             url: "MyOrders/{orderId}",
+             new { controller = "Order", action = "GetOrder" }
+         );
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",

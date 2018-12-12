@@ -173,6 +173,7 @@
     <Compile Include="Controllers\RegisterController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="CustomAttributes\ConfirmPasswordAttribute.cs" />
+    <Compile Include="CustomAttributes\ValidateQuantityAttribute.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -283,6 +284,12 @@
     <Content Include="Views\Product\SearchProducts.cshtml" />
     <Content Include="Views\Shared\Navbar.cshtml" />
     <Content Include="Views\Category\GetCategories.cshtml" />
+    <Content Include="Views\Category\CategoryProducts.cshtml" />
+    <Content Include="Views\Order\GetOrder.cshtml" />
+    <Content Include="Views\User\Admin.cshtml" />
+    <Content Include="Views\User\NotAdmin.cshtml" />
+    <Content Include="Views\Product\VariantInfo.cshtml" />
+    <Content Include="Views\Order\NoOrders.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

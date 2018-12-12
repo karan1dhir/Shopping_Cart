@@ -7,6 +7,7 @@ namespace GlobalMarket.ViewModels
 {
     public class OrderViewModel
     {
+        public Guid ID { get; set; }
         public int StatusID { get; set; }
         public string Status { get; set; }
         public double TotalAmount { get; set; }

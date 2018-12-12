@@ -84,6 +84,12 @@ namespace DataAccess.DBObjects
            orderInfo.Orders = OrderMapper.Map<IEnumerable<Order>, IEnumerable<OrderDTO>>(orderList.AsEnumerable());
            return orderInfo;
         }
-     }   
- }
+        public OrderDTO GetOrder(Guid orderID)
+        {
+            Order order = shoppingCartEntities.Orders.Where(o => o.ID == orderID).FirstOrDefault();
+            OrderDTO orderDTO = OrderMapper.Map<Order, OrderDTO>(order);
+            return orderDTO;
+        }
+    }
+}
 

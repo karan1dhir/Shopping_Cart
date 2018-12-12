@@ -8,6 +8,7 @@ namespace Shared.DTO.Order
 {
     public class OrderDTO
     {
+      public Guid ID { get; set; }
       public int StatusID { get; set; }
       public double TotalAmount { get; set; }
       public string Status { get; set; }

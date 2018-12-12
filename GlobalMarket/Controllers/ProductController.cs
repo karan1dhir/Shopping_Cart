@@ -39,7 +39,6 @@ namespace GlobalMarket.Controllers
                 cfg.CreateMap<ProductDTO, ProductViewModel>();
                 cfg.CreateMap<VariantDTO, VariantViewModel>();
                 cfg.CreateMap<CategoryProductDTO, CategoryProductViewModel>();
-                cfg.CreateMap<VariantDTO, VariantViewModel>();
                 cfg.CreateMap<VariantImageDTO, VariantImageViewModel>();
             });
             var productSearchResultDTOConfig = new MapperConfiguration(cfg => {
@@ -60,6 +59,7 @@ namespace GlobalMarket.Controllers
             try
             {
                 productDTO = productBusinessContext.GetProduct(ProductID);
+
             }
             catch(CatgoryDoesNotExistsException ex)
             {
@@ -70,9 +70,30 @@ namespace GlobalMarket.Controllers
                 return View("Internal View");
             }
             productViewModel = ProductProductVMMapper.Map<ProductDTO, ProductViewModel>(productDTO);
+            productViewModel.variantDisplay = ProductProductVMMapper.Map<VariantDTO, VariantViewModel>(productDTO.Variants.FirstOrDefault());
             return View(productViewModel);
         }
-      
+
+        public ActionResult VariantInfo(VariantViewModel VariantViewModelParam)
+        {
+            return View(VariantViewModelParam);
+        }
+    
+
+        [HttpPost]
+        public ActionResult UpdateVariant(string variantID)
+        {
+            Guid VariantID = new Guid(variantID);
+            ProductViewModel productViewModel = new ProductViewModel();
+            VariantDTO variantDTO = productBusinessContext.GetVariant(VariantID);
+            VariantViewModel variantViewModel = ProductProductVMMapper.Map<VariantDTO, VariantViewModel>(variantDTO);
+            ProductDTO productDTO = productBusinessContext.GetProduct(variantDTO.Product.ID);
+            productViewModel = CategoryProductVMMapper.Map<ProductDTO, ProductViewModel>(productDTO);
+            productViewModel.variantDisplay = variantViewModel;
+            return RedirectToAction("VariantInfo", new { VariantViewModelParam = variantViewModel });
+        }
+
+
         public ActionResult SearchProducts(string SearchString)
         {
             ProductsSearchResultDTO productsSearchResultDTO = new ProductsSearchResultDTO();

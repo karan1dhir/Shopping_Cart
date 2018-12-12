@@ -11,12 +11,12 @@ using System.Threading.Tasks;
 
 namespace Business.BusinessObjects
 {
-   public class UserBusinessContext
+    public class UserBusinessContext
     {
         UserDatabase userDatabase;
         public UserBusinessContext()
         {
-         userDatabase = new UserDatabase();
+            userDatabase = new UserDatabase();
         }
         public UserBasicDTO RegisterUser(UserDTO userDTO)
         {
@@ -34,7 +34,7 @@ namespace Business.BusinessObjects
             {
                 throw new UserNameAlreadyExistsException();
             }
-             catch (Exception ex)
+            catch (Exception ex)
             {
                 throw new Exception();
             }
@@ -63,7 +63,7 @@ namespace Business.BusinessObjects
             RoleBasicDTO roleBasicDTO = userDatabase.GetRole();
             try
             {
-                if(userDatabase.GetRole().roles.Count()<=0)
+                if (userDatabase.GetRole().roles.Count() <= 0)
                 {
                     throw new NoRolesFoundException();
                 }
@@ -76,10 +76,14 @@ namespace Business.BusinessObjects
             {
                 throw new NoRolesFoundException();
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 throw new Exception();
             }
+        }
+        public bool CheckAdmin(Guid UserID)
+        {
+            return userDatabase.CheckAdmin(UserID);
         }
     }
 }

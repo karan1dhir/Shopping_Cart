@@ -9,6 +9,7 @@ namespace GlobalMarket.ViewModels
     public class VariantViewModel
     {
         public Guid ID { get; set; }
+        public string VariantString { get; set; }
         public float ListingPrice { get; set; }
         public float Discount { get; set; }
         public int QuantitySold { get; set; }

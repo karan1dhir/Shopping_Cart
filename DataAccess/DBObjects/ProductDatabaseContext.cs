@@ -46,11 +46,14 @@ namespace DataAccess.DBObjects
             var productDTOConfig = new MapperConfiguration(cfg =>{
                 cfg.CreateMap<Product, ProductDTO>();
                 cfg.CreateMap<Variant, VariantDTO>();
+
             });
 
             var VariantDTOConfig = new MapperConfiguration(cfg => {
                 cfg.CreateMap<Variant, VariantDTO>();
                 cfg.CreateMap<Product, ProductDTO>();
+                cfg.CreateMap<VariantImage, VariantImageDTO>();
+                cfg.CreateMap<Category, CategoryProductDTO>();
             });
             var productVariantCollectionDTOConfig = new MapperConfiguration(cfg => {
                 cfg.CreateMap<Variant, VariantDTO>();
@@ -85,7 +88,7 @@ namespace DataAccess.DBObjects
         }
         public ProductsSearchResultDTO GetProductsWithString(string SearchString)
         {
-            IEnumerable<Product> searchResults = shoppingCartEntities.Products.Where(p => p.Name.Contains(SearchString) || p.Description.Contains(SearchString)).Include(p => p.Category);
+            IEnumerable<Product> searchResults = shoppingCartEntities.Products.Where(p => p.Title.Contains(SearchString) || p.Description.Contains(SearchString)).Include(p => p.Category);
             ProductsSearchResultDTO productsSearchResultDTO = new ProductsSearchResultDTO();
             productsSearchResultDTO.Products = ProductSearchMapper.Map<IEnumerable<Product>, IEnumerable<ProductDTO>>(searchResults);
             return productsSearchResultDTO;
@@ -113,11 +116,25 @@ namespace DataAccess.DBObjects
         public CategoryProductDTO GetCategoryProducts(string CategoryName)
         {
             Category category = shoppingCartEntities.Categories.Include(c => c.Products).Where(c => c.Name == CategoryName).FirstOrDefault();
-            IEnumerable<Product> products = category.Products;
             CategoryProductDTO categoryProductDTO = new CategoryProductDTO();
-            categoryProductDTO.Products = CategoryProductMapper.Map<IEnumerable<Product>, IEnumerable<ProductDTO>>(products);
-            categoryProductDTO.Name = category.Name;
+            categoryProductDTO = CategoryProductMapper.Map<Category, CategoryProductDTO>(category);
             return categoryProductDTO;
+        }
+
+        private string SetVariantStringFromSKU(string sKU)
+        {
+            string variantString = "";
+            string[] propertyValueMappingID = sKU.Split('~');
+            foreach (string mapper in propertyValueMappingID)
+            {
+                int mapperID = int.Parse(mapper);
+                Guid propertyID = shoppingCartEntities.VariantPropertyValues.Where(m => m.ID == mapperID).Select(m => m.PropertyID).FirstOrDefault();
+                Guid valueID = shoppingCartEntities.VariantPropertyValues.Where(m => m.ID == mapperID).Select(m => m.ValueID).FirstOrDefault();
+                string property = shoppingCartEntities.Properties.Where(p => p.ID == propertyID).Select(p => p.Name).FirstOrDefault();
+                string value = shoppingCartEntities.Values.Where(v => v.ID == valueID).Select(v => v.Name).FirstOrDefault();
+                variantString = variantString + " " + property + ":" + value;
+            }
+            return variantString;
         }
         public ProductDTO GetProduct(Guid ProductID)
         {
@@ -125,6 +142,11 @@ namespace DataAccess.DBObjects
             ProductDTO productDTO = new ProductDTO();
             productDTO = ProductMapper.Map<Product, ProductDTO>(product);
             productDTO.Variants = VariantMapper.Map<IEnumerable<Variant>,IEnumerable<VariantDTO>>(product.Variants);
+            foreach (VariantDTO variant in productDTO.Variants)
+            {
+                variant.VariantString = SetVariantStringFromSKU(variant.SKU);
+            }
+
             return productDTO;
 
         }
@@ -144,6 +166,12 @@ namespace DataAccess.DBObjects
             AnalyticsDTO analyticsDTO = new AnalyticsDTO();
             analyticsDTO.categoryProducts = AnalyticsMapper.Map<IEnumerable<Category>, IEnumerable<CategoryProductDTO>>(categories);
             return analyticsDTO;
+        }
+        public VariantDTO GetVariant(Guid variantID)
+        {
+            Variant variant = shoppingCartEntities.Variants.Where(v => v.ID == variantID).FirstOrDefault();
+            VariantDTO variantDTO = VariantMapper.Map<Variant, VariantDTO>(variant);
+            return variantDTO;
         }
     }
 }

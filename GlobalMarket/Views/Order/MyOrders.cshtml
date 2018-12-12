@@ -8,12 +8,15 @@
 <div class="row">
     @foreach (var order in Model.Orders)
     {
-        <div class="col-md-7">
+        
+    <div class="col-md-7">
+        <a href="@Url.Action("GetOrder","Order", new {OrderID = order.ID })">
             <h4>@order.OrderDate.ToString("dd/MM/yyyy")</h4>
             <p><b>Total : </b>$@order.TotalAmount</p>
             <p><b>Status : </b>@order.Status</p>
             <hr />
-        </div>
+            </a>
+           </div>
         <hr />
     }
 </div>

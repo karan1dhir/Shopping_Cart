@@ -10,6 +10,7 @@ namespace Shared.DTO.Variant
     public class VariantDTO
     {
         public Guid ID { get; set; }
+        public string VariantString { get; set; }
         public string SKU { get; set; }
         public double ListingPrice {get ; set;}
         public double Discount { get; set; }

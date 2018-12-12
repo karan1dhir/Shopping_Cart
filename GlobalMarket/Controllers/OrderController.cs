@@ -3,7 +3,9 @@ using Business.BusinessObjects;
 using Business.Exceptions;
 using GlobalMarket.ActionFilter;
 using GlobalMarket.ViewModels;
+using Shared.DTO.Category;
 using Shared.DTO.Order;
+using Shared.DTO.Product;
 using Shared.DTO.Variant;
 using System;
 using System.Collections.Generic;
@@ -22,7 +24,7 @@ namespace GlobalMarket.Controllers
         IMapper AddressMapper;
         IMapper OrdersMapper;
         OrderBusinessContext orderBusinessContext;
-
+            
         public OrderController()
         {
             orderBusinessContext = new OrderBusinessContext();
@@ -35,6 +37,8 @@ namespace GlobalMarket.Controllers
                 cfg.CreateMap<OrderPlacedVariantDTO, OrderPlacedVariantViewModel>();
                 cfg.CreateMap<VariantDTO, VariantViewModel>();
                 cfg.CreateMap<VariantImageDTO, VariantImageViewModel>();
+                cfg.CreateMap<ProductDTO, ProductViewModel>();
+                cfg.CreateMap<CategoryProductDTO, CategoryProductViewModel>();
 
             });
             AddressMapper = new Mapper(config);
@@ -70,7 +74,6 @@ namespace GlobalMarket.Controllers
          }
         public  ActionResult MyOrders()
         {
-
             OrdersViewModel ordersViewModel = new OrdersViewModel();
             try
             {
@@ -87,5 +90,11 @@ namespace GlobalMarket.Controllers
             }
             return View(ordersViewModel);
         }
-      }
-   }
+        public ActionResult GetOrder(Guid OrderID)
+        {
+            OrderDTO orderDTO = orderBusinessContext.GetOrder(OrderID);
+            OrderViewModel orderViewModel = OrdersMapper.Map<OrderDTO, OrderViewModel>(orderDTO);
+            return View(orderViewModel);
+        }
+    }
+}
