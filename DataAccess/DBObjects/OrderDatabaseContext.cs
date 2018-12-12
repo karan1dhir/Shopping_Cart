@@ -7,6 +7,7 @@ using Shared.DTO.Product;
 using Shared.DTO.Variant;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -73,10 +74,12 @@ namespace DataAccess.DBObjects
         public OrdersDTO GetOrders(Guid UserID)
           {
             IEnumerable<Guid> OrderPlacedID = shoppingCartEntities.OrderPlaceds.Where(c => c.UserID == UserID).Select(o => o.OrderID).ToList();
+            Debug.WriteLine(shoppingCartEntities.OrderPlaceds.Where(c => c.UserID == UserID).Select(o => o.OrderID).ToList());
             List<Order> orderList = new List<Order>();
             foreach(Guid orderID in OrderPlacedID)
             {
                 Order order = shoppingCartEntities.Orders.Where(c => c.ID == orderID).FirstOrDefault();
+                Debug.WriteLine(shoppingCartEntities.Orders.Where(c => c.ID == orderID).FirstOrDefault());
                 orderList.Add(order);
             }
           
@@ -87,6 +90,7 @@ namespace DataAccess.DBObjects
         public OrderDTO GetOrder(Guid orderID)
         {
             Order order = shoppingCartEntities.Orders.Where(o => o.ID == orderID).FirstOrDefault();
+            Debug.WriteLine(shoppingCartEntities.Orders.Where(o => o.ID == orderID).FirstOrDefault());
             OrderDTO orderDTO = OrderMapper.Map<Order, OrderDTO>(order);
             return orderDTO;
         }

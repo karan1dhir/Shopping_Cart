@@ -9,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Shared.DTO.Product;
+using System.Diagnostics;
 
 namespace DataAccess.DBObjects
 {
@@ -25,6 +26,7 @@ namespace DataAccess.DBObjects
         {
             CategoriesDTO categoriesDTO = new CategoriesDTO();
             IEnumerable<string> categories = shoppingCartEntities.Categories.ToList().Select(p => p.Name);
+            Debug.WriteLine(shoppingCartEntities.Categories.ToList().Select(p => p.Name));
             categoriesDTO.categories = categories;
             return categoriesDTO;
         }

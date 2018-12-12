@@ -92,9 +92,16 @@ namespace GlobalMarket.Controllers
         }
         public ActionResult GetOrder(Guid OrderID)
         {
-            OrderDTO orderDTO = orderBusinessContext.GetOrder(OrderID);
-            OrderViewModel orderViewModel = OrdersMapper.Map<OrderDTO, OrderViewModel>(orderDTO);
-            return View(orderViewModel);
+            try
+            {
+                OrderDTO orderDTO = orderBusinessContext.GetOrder(OrderID);
+                OrderViewModel orderViewModel = OrdersMapper.Map<OrderDTO, OrderViewModel>(orderDTO);
+                return View(orderViewModel);
+            }
+            catch(Exception ex)
+            {
+                return RedirectToAction("DefaultExceptionCatch", "Default", new { exception = ex });
+            }
         }
     }
 }

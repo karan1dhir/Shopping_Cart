@@ -25,7 +25,6 @@ namespace GlobalMarket.Controllers
 
         public ActionResult CheckAdmin()
         {
-
             try
             {
                 if (userBusinessContext.CheckAdmin(new Guid(Session["UserID"].ToString())))

@@ -35,6 +35,10 @@ namespace DataAccess.DBObjects
 
         double ListingPrice = shoppingCartEntities.Variants.Where(v => v.ID == VariantID).Select(v => v.ListingPrice).FirstOrDefault();
         double Discount = shoppingCartEntities.Variants.Where(v => v.ID == VariantID).Select(v => v.Discount).FirstOrDefault();
+        Debug.WriteLine(shoppingCartEntities.Variants.Where(v => v.ID == VariantID).Select(v => v.ListingPrice).FirstOrDefault());
+        Debug.WriteLine(shoppingCartEntities.Variants.Where(v => v.ID == VariantID).Select(v => v.Discount).FirstOrDefault());
+            
+
         double SellingPrice = ListingPrice - Discount * ListingPrice / 100;
         return SellingPrice; 
     }
@@ -44,6 +48,8 @@ namespace DataAccess.DBObjects
 
             int quantity = shoppingCartEntities.CartVariantMappings.Where(c => c.CartID == cartVariantMappingDTO.UserID && c.VariantID == cartVariantMappingDTO.VariantID)
                 .Select(q => q.Quantity).FirstOrDefault();
+            Debug.WriteLine(shoppingCartEntities.CartVariantMappings.Where(c => c.CartID == cartVariantMappingDTO.UserID && c.VariantID == cartVariantMappingDTO.VariantID)
+                .Select(q => q.Quantity).FirstOrDefault());
 
             if(quantity == 0) { return quantity; }
             return quantity;
@@ -52,6 +58,7 @@ namespace DataAccess.DBObjects
         public int GetInventory(CartVariantMappingDTO cartVariantMappingDTO)
         {
             int Inventory  = shoppingCartEntities.Variants.Where(c => c.ID == cartVariantMappingDTO.VariantID).Select(p=> p.Inventory).FirstOrDefault();
+            Debug.WriteLine(shoppingCartEntities.Variants.Where(c => c.ID == cartVariantMappingDTO.VariantID).Select(p => p.Inventory).FirstOrDefault());
             return Inventory;
         }
         public int GetOrderLimit(CartVariantMappingDTO cartVariantMappingDTO)
@@ -59,6 +66,8 @@ namespace DataAccess.DBObjects
 
            Guid productID = shoppingCartEntities.Variants.Where(c => c.ID == cartVariantMappingDTO.VariantID).Select(p => p.ProductID).FirstOrDefault();
            var OrderLimit = shoppingCartEntities.Products.Where(p => p.ID == productID).Select(o => o.OrderLimit).FirstOrDefault();
+            Debug.WriteLine(shoppingCartEntities.Variants.Where(c => c.ID == cartVariantMappingDTO.VariantID).Select(p => p.ProductID).FirstOrDefault());
+            Debug.WriteLine(shoppingCartEntities.Products.Where(p => p.ID == productID).Select(o => o.OrderLimit).FirstOrDefault());
            if(OrderLimit == null)
             {
                 int inventoryValue = GetInventory(cartVariantMappingDTO);
@@ -69,6 +78,7 @@ namespace DataAccess.DBObjects
         private bool isItemPresent(CartVariantMappingDTO cartVariantMappingDTO)
         {
             CartVariantMapping cart = shoppingCartEntities.CartVariantMappings.Where(c => c.CartID == cartVariantMappingDTO.UserID && c.VariantID == cartVariantMappingDTO.VariantID).FirstOrDefault();
+            Debug.WriteLine(shoppingCartEntities.CartVariantMappings.Where(c => c.CartID == cartVariantMappingDTO.UserID && c.VariantID == cartVariantMappingDTO.VariantID).FirstOrDefault());
             if (cart != null)
             {
                 return true;
@@ -104,12 +114,14 @@ namespace DataAccess.DBObjects
         public void EmptyCart(Guid UserID)
         {
             shoppingCartEntities.CartVariantMappings.RemoveRange(shoppingCartEntities.CartVariantMappings.Where(c => c.CartID == UserID));
+            Debug.WriteLine(shoppingCartEntities.CartVariantMappings.RemoveRange(shoppingCartEntities.CartVariantMappings.Where(c => c.CartID == UserID)));
             shoppingCartEntities.SaveChanges();
             return;
         }
         public void RemoveItem(Guid UserID, Guid VariantID)
         {
             shoppingCartEntities.CartVariantMappings.RemoveRange(shoppingCartEntities.CartVariantMappings.Where(c => c.CartID == UserID && c.VariantID == VariantID));
+            Debug.WriteLine(shoppingCartEntities.CartVariantMappings.RemoveRange(shoppingCartEntities.CartVariantMappings.Where(c => c.CartID == UserID && c.VariantID == VariantID)));
             shoppingCartEntities.SaveChanges();
             return;
         }

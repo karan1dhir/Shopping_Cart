@@ -12,6 +12,7 @@ using System.Text;
 using System.Threading.Tasks;
 using DataAccess.Exceptions;
 using Shared.DTO.Cart;
+using System.Diagnostics;
 
 namespace DataAccess.DBObjects
 {
@@ -82,6 +83,11 @@ namespace DataAccess.DBObjects
                 shoppingCartEntities.Variants.FirstOrDefault(p => p.ID == cartItem.Variant.ID).Inventory -= cartItem.Quantity;
                 shoppingCartEntities.Variants.FirstOrDefault(p => p.ID == cartItem.Variant.ID).QuantitySold += cartItem.Quantity;
                 shoppingCartEntities.Categories.FirstOrDefault(c => c.ID == cartItem.Variant.Product.Category.ID).ProductsSold += cartItem.Quantity;
+
+                Debug.WriteLine(shoppingCartEntities.Variants.FirstOrDefault(p => p.ID == cartItem.Variant.ID).Inventory -= cartItem.Quantity);
+                Debug.WriteLine(shoppingCartEntities.Variants.FirstOrDefault(p => p.ID == cartItem.Variant.ID).QuantitySold += cartItem.Quantity);
+                Debug.WriteLine(shoppingCartEntities.Categories.FirstOrDefault(c => c.ID == cartItem.Variant.Product.Category.ID).ProductsSold += cartItem.Quantity);
+
                 shoppingCartEntities.SaveChanges();
             }
             return;
@@ -89,6 +95,7 @@ namespace DataAccess.DBObjects
         public ProductsSearchResultDTO GetProductsWithString(string SearchString)
         {
             IEnumerable<Product> searchResults = shoppingCartEntities.Products.Where(p => p.Title.Contains(SearchString) || p.Description.Contains(SearchString)).Include(p => p.Category);
+            Debug.WriteLine(shoppingCartEntities.Products.Where(p => p.Title.Contains(SearchString) || p.Description.Contains(SearchString)).Include(p => p.Category));
             ProductsSearchResultDTO productsSearchResultDTO = new ProductsSearchResultDTO();
             productsSearchResultDTO.Products = ProductSearchMapper.Map<IEnumerable<Product>, IEnumerable<ProductDTO>>(searchResults);
             return productsSearchResultDTO;
@@ -96,6 +103,7 @@ namespace DataAccess.DBObjects
         public bool ProductExists(Guid ProductID)
         {
             Product product = shoppingCartEntities.Products.Find(ProductID);
+            Debug.WriteLine(shoppingCartEntities.Products.Find(ProductID));
             if(product == null)
             {
                 throw new ProductNotFoundException();
@@ -106,6 +114,7 @@ namespace DataAccess.DBObjects
         public bool CategoryExists(string CategoryName) 
         {
             Category category = shoppingCartEntities.Categories.Where(c => c.Name == CategoryName).FirstOrDefault();
+            Debug.WriteLine(shoppingCartEntities.Categories.Where(c => c.Name == CategoryName).FirstOrDefault());
             if(category == null)
             {
                 throw new NotFoundException();
@@ -116,6 +125,7 @@ namespace DataAccess.DBObjects
         public CategoryProductDTO GetCategoryProducts(string CategoryName)
         {
             Category category = shoppingCartEntities.Categories.Include(c => c.Products).Where(c => c.Name == CategoryName).FirstOrDefault();
+            Debug.WriteLine(shoppingCartEntities.Categories.Include(c => c.Products).Where(c => c.Name == CategoryName).FirstOrDefault());
             CategoryProductDTO categoryProductDTO = new CategoryProductDTO();
             categoryProductDTO = CategoryProductMapper.Map<Category, CategoryProductDTO>(category);
             return categoryProductDTO;
@@ -131,14 +141,20 @@ namespace DataAccess.DBObjects
                 Guid propertyID = shoppingCartEntities.VariantPropertyValues.Where(m => m.ID == mapperID).Select(m => m.PropertyID).FirstOrDefault();
                 Guid valueID = shoppingCartEntities.VariantPropertyValues.Where(m => m.ID == mapperID).Select(m => m.ValueID).FirstOrDefault();
                 string property = shoppingCartEntities.Properties.Where(p => p.ID == propertyID).Select(p => p.Name).FirstOrDefault();
+
+                Debug.WriteLine(shoppingCartEntities.VariantPropertyValues.Where(m => m.ID == mapperID).Select(m => m.PropertyID).FirstOrDefault());
+                Debug.WriteLine(shoppingCartEntities.VariantPropertyValues.Where(m => m.ID == mapperID).Select(m => m.ValueID).FirstOrDefault());
+                Debug.WriteLine(shoppingCartEntities.Properties.Where(p => p.ID == propertyID).Select(p => p.Name).FirstOrDefault());
                 string value = shoppingCartEntities.Values.Where(v => v.ID == valueID).Select(v => v.Name).FirstOrDefault();
                 variantString = variantString + " " + property + ":" + value;
             }
+          
             return variantString;
         }
         public ProductDTO GetProduct(Guid ProductID)
         {
             Product product = shoppingCartEntities.Products.Where(p => p.ID == ProductID).Include(p => p.Variants).FirstOrDefault();
+            Debug.WriteLine(shoppingCartEntities.Products.Where(p => p.ID == ProductID).Include(p => p.Variants).FirstOrDefault());
             ProductDTO productDTO = new ProductDTO();
             productDTO = ProductMapper.Map<Product, ProductDTO>(product);
             productDTO.Variants = VariantMapper.Map<IEnumerable<Variant>,IEnumerable<VariantDTO>>(product.Variants);
@@ -153,9 +169,11 @@ namespace DataAccess.DBObjects
         public AnalyticsDTO GetTopProductsByCart()
         {
             List<Category> categories = shoppingCartEntities.Categories.Include(c => c.Products).OrderByDescending(c => c.ProductsSold).ToList();
+            Debug.WriteLine(shoppingCartEntities.Categories.Include(c => c.Products).OrderByDescending(c => c.ProductsSold).ToList());
             foreach (Category category in categories)
             {
                 category.Products = category.Products.OrderByDescending(p => p.TotalVariantsSold).ToList();
+                Debug.WriteLine(category.Products.OrderByDescending(p => p.TotalVariantsSold).ToList());
                 IEnumerable<Product> products = category.Products;
                 foreach (Product product in products)
                 {
@@ -170,6 +188,7 @@ namespace DataAccess.DBObjects
         public VariantDTO GetVariant(Guid variantID)
         {
             Variant variant = shoppingCartEntities.Variants.Where(v => v.ID == variantID).FirstOrDefault();
+            Debug.WriteLine(shoppingCartEntities.Variants.Where(v => v.ID == variantID).FirstOrDefault());
             VariantDTO variantDTO = VariantMapper.Map<Variant, VariantDTO>(variant);
             return variantDTO;
         }

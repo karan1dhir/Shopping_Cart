@@ -9,6 +9,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Diagnostics;
 
 namespace DataAccess.DBObjects
 {
@@ -49,6 +50,7 @@ namespace DataAccess.DBObjects
             User user = userDTOMapUserMapper.Map<UserDTO, User>(userDTO);
             user.ID = Guid.NewGuid();
             user.RoleID = shoppingCartEntities.Roles.Where(r => r.Name == "USER").Select(a => a.ID).FirstOrDefault();
+            Debug.WriteLine(shoppingCartEntities.Roles.Where(r => r.Name == "USER").Select(a => a.ID).FirstOrDefault());
             shoppingCartEntities.Users.Add(user);
             shoppingCartEntities.SaveChanges();
             UserBasicDTO userBasicDTO = userMapUserBasicDTOMapper.Map<User, UserBasicDTO>(user);
@@ -57,6 +59,7 @@ namespace DataAccess.DBObjects
         public bool UserEmailExists(string userEmail)
         {
             User user = shoppingCartEntities.Users.Where(userinfo => userinfo.Email == userEmail).FirstOrDefault();
+            Debug.WriteLine(shoppingCartEntities.Users.Where(userinfo => userinfo.Email == userEmail).FirstOrDefault());
             if (user == null)
             {
                 return false;
@@ -69,6 +72,7 @@ namespace DataAccess.DBObjects
         public UserBasicDTO GetUser(UserLoginDTO userLoginDTO)
         {
             User user = shoppingCartEntities.Users.Where(a => a.Email == userLoginDTO.Email).First();
+            Debug.WriteLine(shoppingCartEntities.Users.Where(a => a.Email == userLoginDTO.Email).First());
             if (user != null)
             {
                 UserBasicDTO UserBasicDTO = userMapUserBasicDTOMapper.Map<User, UserBasicDTO>(user);
@@ -82,6 +86,7 @@ namespace DataAccess.DBObjects
         public bool UserExists(UserLoginDTO userLoginDTO)
         {
             User user = shoppingCartEntities.Users.Where(a => a.Email == userLoginDTO.Email).FirstOrDefault();
+            Debug.WriteLine(shoppingCartEntities.Users.Where(a => a.Email == userLoginDTO.Email).FirstOrDefault());
             if (user != null)
             {
                 return true;
@@ -95,6 +100,7 @@ namespace DataAccess.DBObjects
         public RoleBasicDTO GetRole()
         {
             List<Role> roles = shoppingCartEntities.Roles.Where(p=> p.Name != "ADMIN").ToList();
+            Debug.WriteLine(shoppingCartEntities.Roles.Where(p => p.Name != "ADMIN").ToList());
             IEnumerable<Role> convertRoles= roles.AsEnumerable<Role>();
             RoleBasicDTO roleBasicDTO = new RoleBasicDTO();
             roleBasicDTO.roles = roleMapRoleBasicDTOMapper.Map<IEnumerable<Role>, IEnumerable<RoleDTO>>(convertRoles);
@@ -111,6 +117,9 @@ namespace DataAccess.DBObjects
         {
             User user = shoppingCartEntities.Users.Where(u => u.ID == UserID).Include(u => u.Role).First();
             string role = shoppingCartEntities.Roles.Where(r => r.ID == user.RoleID).Select(r => r.Name).FirstOrDefault();
+
+            Debug.WriteLine(shoppingCartEntities.Users.Where(u => u.ID == UserID).Include(u => u.Role).First());
+            Debug.WriteLine(shoppingCartEntities.Roles.Where(r => r.ID == user.RoleID).Select(r => r.Name).FirstOrDefault());
 
             if (role == "ADMIN")
             {

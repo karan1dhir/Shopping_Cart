@@ -90,16 +90,30 @@ namespace GlobalMarket.Controllers
         }
         public ActionResult ViewCart()
         {
-            CartVariantItemsDTO cartVariantItemsDTO = cartBusinessContext.GetCart(new Guid(Session["UserID"].ToString()));
-            CartVariantItemsViewModel cartVariantItemsViewModel = new CartVariantItemsViewModel();
-            cartVariantItemsViewModel.CartItems= CartInfoMapper.Map<IEnumerable<CartVariantDTO>, IEnumerable<CartVarientViewModel>>(cartVariantItemsDTO.CartItems);
-            cartVariantItemsViewModel.SubTotal = cartVariantItemsDTO.SubTotal;
-            return View(cartVariantItemsViewModel);
+            try
+            {
+                CartVariantItemsDTO cartVariantItemsDTO = cartBusinessContext.GetCart(new Guid(Session["UserID"].ToString()));
+                CartVariantItemsViewModel cartVariantItemsViewModel = new CartVariantItemsViewModel();
+                cartVariantItemsViewModel.CartItems = CartInfoMapper.Map<IEnumerable<CartVariantDTO>, IEnumerable<CartVarientViewModel>>(cartVariantItemsDTO.CartItems);
+                cartVariantItemsViewModel.SubTotal = cartVariantItemsDTO.SubTotal;
+                return View(cartVariantItemsViewModel);
+            }
+            catch(Exception ex)
+            {
+                return RedirectToAction("DefaultExceptionCatch", "Default", new { exception = ex });
+            }
         }
         public ActionResult RemoveItem(Guid VariantID)
         {
-            cartBusinessContext.RemoveItem(new Guid(Session["UserID"].ToString()), VariantID);
-            return RedirectToAction("ViewCart");
+            try
+            {
+                cartBusinessContext.RemoveItem(new Guid(Session["UserID"].ToString()), VariantID);
+                return RedirectToAction("ViewCart");
+            }
+            catch(Exception ex)
+            {
+                return RedirectToAction("DefaultExceptionCatch", "Default", new { exception = ex });
+            }
         }
     }
 }

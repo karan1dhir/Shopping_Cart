@@ -59,6 +59,9 @@ namespace GlobalMarket.Controllers
             try
             {
                 productDTO = productBusinessContext.GetProduct(ProductID);
+                productViewModel = ProductProductVMMapper.Map<ProductDTO, ProductViewModel>(productDTO);
+                productViewModel.variantDisplay = ProductProductVMMapper.Map<VariantDTO, VariantViewModel>(productDTO.Variants.FirstOrDefault());
+                return View(productViewModel);
 
             }
             catch(CatgoryDoesNotExistsException ex)
@@ -69,9 +72,7 @@ namespace GlobalMarket.Controllers
             {
                 return View("Internal View");
             }
-            productViewModel = ProductProductVMMapper.Map<ProductDTO, ProductViewModel>(productDTO);
-            productViewModel.variantDisplay = ProductProductVMMapper.Map<VariantDTO, VariantViewModel>(productDTO.Variants.FirstOrDefault());
-            return View(productViewModel);
+            
         }
 
         public ActionResult VariantInfo(VariantViewModel VariantViewModelParam)
@@ -83,14 +84,21 @@ namespace GlobalMarket.Controllers
         [HttpPost]
         public ActionResult UpdateVariant(string variantID)
         {
-            Guid VariantID = new Guid(variantID);
-            ProductViewModel productViewModel = new ProductViewModel();
-            VariantDTO variantDTO = productBusinessContext.GetVariant(VariantID);
-            VariantViewModel variantViewModel = ProductProductVMMapper.Map<VariantDTO, VariantViewModel>(variantDTO);
-            ProductDTO productDTO = productBusinessContext.GetProduct(variantDTO.Product.ID);
-            productViewModel = CategoryProductVMMapper.Map<ProductDTO, ProductViewModel>(productDTO);
-            productViewModel.variantDisplay = variantViewModel;
-            return RedirectToAction("VariantInfo", new { VariantViewModelParam = variantViewModel });
+            try
+            {
+                Guid VariantID = new Guid(variantID);
+                ProductViewModel productViewModel = new ProductViewModel();
+                VariantDTO variantDTO = productBusinessContext.GetVariant(VariantID);
+                VariantViewModel variantViewModel = ProductProductVMMapper.Map<VariantDTO, VariantViewModel>(variantDTO);
+                ProductDTO productDTO = productBusinessContext.GetProduct(variantDTO.Product.ID);
+                productViewModel = CategoryProductVMMapper.Map<ProductDTO, ProductViewModel>(productDTO);
+                productViewModel.variantDisplay = variantViewModel;
+                return RedirectToAction("VariantInfo", new { VariantViewModelParam = variantViewModel });
+            }
+            catch(Exception ex)
+            {
+                return RedirectToAction("DefaultExceptionCatch", "Default", new { exception = ex });
+            }
         }
 
 

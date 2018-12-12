@@ -35,6 +35,7 @@ namespace GlobalMarket.Controllers
 
         public PartialViewResult GetCategories()
         {
+
             CategoriesViewModel categoriesViewModel = new CategoriesViewModel();
             CategoriesDTO categoryDTOs = categoryBusinessContext.GetCategories();
             categoriesViewModel.categories = categoryDTOs.categories;
