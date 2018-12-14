@@ -992,7 +992,7 @@
             <Parameter Name="CategoryName" Mode="In" Type="String" />
             <Parameter Name="CategoryID" Mode="InOut" Type="Guid" />
           </FunctionImport>
-          <FunctionImport Name="AddItem" ReturnType="Collection(Guid)">
+          <FunctionImport Name="AddItem">
             <Parameter Name="CategoryName" Mode="In" Type="String" />
             <Parameter Name="ProductName" Mode="In" Type="String" />
             <Parameter Name="Title" Mode="In" Type="String" />
@@ -1006,7 +1006,7 @@
             <Parameter Name="ValueName" Mode="In" Type="String" />
             <Parameter Name="VariantImage" Mode="In" Type="String" />
           </FunctionImport>
-          <FunctionImport Name="AddProduct" ReturnType="Collection(Guid)">
+          <FunctionImport Name="AddProduct">
             <Parameter Name="ProductName" Mode="In" Type="String" />
             <Parameter Name="Title" Mode="In" Type="String" />
             <Parameter Name="OrderLimit" Mode="In" Type="Int32" />
@@ -1045,7 +1045,7 @@
             <Parameter Name="Name" Mode="In" Type="String" />
             <Parameter Name="ValueID" Mode="InOut" Type="Guid" />
           </FunctionImport>
-          <FunctionImport Name="AddVariant" ReturnType="Collection(Guid)">
+          <FunctionImport Name="AddVariant">
             <Parameter Name="ProductID" Mode="In" Type="Guid" />
             <Parameter Name="ListingPrice" Mode="In" Type="Double" />
             <Parameter Name="Discount" Mode="In" Type="Double" />

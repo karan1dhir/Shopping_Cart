@@ -113,3 +113,5 @@ C:\Users\karandhir\source\repos\GlobalMarket\GlobalMarket\obj\Release\Presentati
 C:\Users\karandhir\source\repos\GlobalMarket\GlobalMarket\obj\Release\Presentation.csproj.CopyComplete
 C:\Users\karandhir\source\repos\GlobalMarket\GlobalMarket\obj\Release\GlobalMarket.dll
 C:\Users\karandhir\source\repos\GlobalMarket\GlobalMarket\obj\Release\GlobalMarket.pdb
+C:\Users\karandhir\source\repos\GlobalMarket\GlobalMarket\bin\ShoppingCart.mdf
+C:\Users\karandhir\source\repos\GlobalMarket\GlobalMarket\bin\ShoppingCart_log.ldf

@@ -15,3 +15,5 @@ C:\Users\karandhir\source\repos\GlobalMarket\Entities\obj\Release\Entities.cspro
 C:\Users\karandhir\source\repos\GlobalMarket\Entities\obj\Release\Entities.csproj.CopyComplete
 C:\Users\karandhir\source\repos\GlobalMarket\Entities\obj\Release\Entities.dll
 C:\Users\karandhir\source\repos\GlobalMarket\Entities\obj\Release\Entities.pdb
+C:\Users\karandhir\source\repos\GlobalMarket\Entities\bin\Release\ShoppingCart.mdf
+C:\Users\karandhir\source\repos\GlobalMarket\Entities\bin\Release\ShoppingCart_log.ldf

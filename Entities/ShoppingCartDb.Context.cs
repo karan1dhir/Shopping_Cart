@@ -86,7 +86,7 @@ namespace Entities
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("addCategory", categoryNameParameter, categoryID);
         }
     
-        public virtual ObjectResult<Nullable<System.Guid>> AddItem(string categoryName, string productName, string title, Nullable<int> orderLimit, string description, Nullable<double> listingPrice, Nullable<double> discount, Nullable<int> quantitySold, Nullable<int> inventory, string propertyName, string valueName, string variantImage)
+        public virtual int AddItem(string categoryName, string productName, string title, Nullable<int> orderLimit, string description, Nullable<double> listingPrice, Nullable<double> discount, Nullable<int> quantitySold, Nullable<int> inventory, string propertyName, string valueName, string variantImage)
         {
             var categoryNameParameter = categoryName != null ?
                 new ObjectParameter("CategoryName", categoryName) :
@@ -136,10 +136,10 @@ namespace Entities
                 new ObjectParameter("VariantImage", variantImage) :
                 new ObjectParameter("VariantImage", typeof(string));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<System.Guid>>("AddItem", categoryNameParameter, productNameParameter, titleParameter, orderLimitParameter, descriptionParameter, listingPriceParameter, discountParameter, quantitySoldParameter, inventoryParameter, propertyNameParameter, valueNameParameter, variantImageParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("AddItem", categoryNameParameter, productNameParameter, titleParameter, orderLimitParameter, descriptionParameter, listingPriceParameter, discountParameter, quantitySoldParameter, inventoryParameter, propertyNameParameter, valueNameParameter, variantImageParameter);
         }
     
-        public virtual ObjectResult<Nullable<System.Guid>> AddProduct(string productName, string title, Nullable<int> orderLimit, string description, Nullable<System.Guid> categoryID, Nullable<double> listingPrice, Nullable<double> discount, Nullable<int> quantitySold, Nullable<int> inventory, string propertyName, string valueName, string variantImage)
+        public virtual int AddProduct(string productName, string title, Nullable<int> orderLimit, string description, Nullable<System.Guid> categoryID, Nullable<double> listingPrice, Nullable<double> discount, Nullable<int> quantitySold, Nullable<int> inventory, string propertyName, string valueName, string variantImage)
         {
             var productNameParameter = productName != null ?
                 new ObjectParameter("ProductName", productName) :
@@ -189,7 +189,7 @@ namespace Entities
                 new ObjectParameter("VariantImage", variantImage) :
                 new ObjectParameter("VariantImage", typeof(string));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<System.Guid>>("AddProduct", productNameParameter, titleParameter, orderLimitParameter, descriptionParameter, categoryIDParameter, listingPriceParameter, discountParameter, quantitySoldParameter, inventoryParameter, propertyNameParameter, valueNameParameter, variantImageParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("AddProduct", productNameParameter, titleParameter, orderLimitParameter, descriptionParameter, categoryIDParameter, listingPriceParameter, discountParameter, quantitySoldParameter, inventoryParameter, propertyNameParameter, valueNameParameter, variantImageParameter);
         }
     
         public virtual int AddProperty(string name, ObjectParameter propertyID)
@@ -265,7 +265,7 @@ namespace Entities
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("AddValue", nameParameter, valueID);
         }
     
-        public virtual ObjectResult<Nullable<System.Guid>> AddVariant(Nullable<System.Guid> productID, Nullable<double> listingPrice, Nullable<double> discount, Nullable<int> quantitySold, Nullable<int> inventory, string propertyName, string valueName, string variantImage)
+        public virtual int AddVariant(Nullable<System.Guid> productID, Nullable<double> listingPrice, Nullable<double> discount, Nullable<int> quantitySold, Nullable<int> inventory, string propertyName, string valueName, string variantImage)
         {
             var productIDParameter = productID.HasValue ?
                 new ObjectParameter("ProductID", productID) :
@@ -299,7 +299,7 @@ namespace Entities
                 new ObjectParameter("VariantImage", variantImage) :
                 new ObjectParameter("VariantImage", typeof(string));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<System.Guid>>("AddVariant", productIDParameter, listingPriceParameter, discountParameter, quantitySoldParameter, inventoryParameter, propertyNameParameter, valueNameParameter, variantImageParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("AddVariant", productIDParameter, listingPriceParameter, discountParameter, quantitySoldParameter, inventoryParameter, propertyNameParameter, valueNameParameter, variantImageParameter);
         }
     
         public virtual int AddVariantImage(Nullable<System.Guid> variantID, string imageURL)

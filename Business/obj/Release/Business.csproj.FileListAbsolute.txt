@@ -27,3 +27,5 @@ C:\Users\karandhir\source\repos\GlobalMarket\Business\obj\Release\Business.cspro
 C:\Users\karandhir\source\repos\GlobalMarket\Business\obj\Release\Business.csproj.CopyComplete
 C:\Users\karandhir\source\repos\GlobalMarket\Business\obj\Release\Business.dll
 C:\Users\karandhir\source\repos\GlobalMarket\Business\obj\Release\Business.pdb
+C:\Users\karandhir\source\repos\GlobalMarket\Business\bin\Release\ShoppingCart.mdf
+C:\Users\karandhir\source\repos\GlobalMarket\Business\bin\Release\ShoppingCart_log.ldf

@@ -17,6 +17,7 @@ namespace Entities
         public System.Guid ID { get; set; }
         public System.Guid VariantID { get; set; }
         public string ImageURL { get; set; }
+    
         public virtual Variant Variant { get; set; }
     }
 }
