@@ -3,74 +3,75 @@
     ViewBag.Title = "ProductDetail";
 }
 <h2>ProductDetail</h2>
-<div class="colorlib-product">
-    <div class="container">
-        <div class="row row-pb-lg product-detail-wrap">
-            <div class="col-sm-8">
-                <div class="text-center" style="margin-top:50px;">
-                    <a href="#" class="prod-img">
-                        <img src="@Model.variantDisplay.VariantImages.First().ImageURL" class="img-fluid" alt="Free html5 bootstrap 4 template" style="max-height: 300px; max-width: 300px">
-                    </a>
+<div style="margin-top:10rem">
+    <div class="colorlib-product">
+        <div class="container">
+            <div class="row row-pb-lg product-detail-wrap">
+                <div class="col-sm-8">
+                    <div class="text-center" style="margin-top:50px;">
+                        <a href="#" class="prod-img">
+                            <img src="@Model.variantDisplay.VariantImages.First().ImageURL" class="img-fluid" alt="Free html5 bootstrap 4 template" style="max-height: 300px; max-width: 300px;margin-left:-25rem">
+                        </a>
+                    </div>
                 </div>
-            </div>
-            <div class="col-sm-4">
-                <div class="product-desc">
-                    <h3>@Model.Name</h3>
-                    <h5>Category : @Model.Category.Name</h5>
-                    <p class="price">
-                        @if (Model.Variants.First().Discount != 0)
+                <div class="col-sm-4">
+                    <div class="product-desc">
+                        <h3>@Model.Name</h3>
+                        <h5>Category : @Model.Category.Name</h5>
+                        <p class="price">
+                            @if (Model.Variants.First().Discount != 0)
+                            {
+                                <strike>$@Model.variantDisplay.ListingPrice</strike><span style="display:inline">  $@((Model.variantDisplay.ListingPrice * (100 - Model.variantDisplay.Discount) / 100))</span>
+                            }
+                            else
+                            {
+                                <span>$@Model.variantDisplay.ListingPrice</span>
+                            }
+                        </p>
+                        <p>@Model.Description</p>
+                        <p><b>The order quantity of this product is limited to @Model.OrderLimit per user.</b></p>
+                        <h5>
+                            @if (Model.Variants.First().Inventory <= 7)
+                            {<span>Only</span>} @(Model.variantDisplay.Inventory - Model.variantDisplay.QuantitySold) left in stock
+                        </h5>
+
+                        @using (Html.BeginForm("AddItem", "Cart", new { ProductID = Model.ID, Inventory = Model.variantDisplay.Inventory, OrderLimit = Model.OrderLimit }, FormMethod.Post, new { enctype = "multipart/form-data" }))
                         {
-                            <strike>$@Model.variantDisplay.ListingPrice</strike><span style="display:inline">  $@((Model.variantDisplay.ListingPrice * (100 - Model.variantDisplay.Discount) / 100))</span>
-                        }
-                        else
-                        {
-                            <span>$@Model.variantDisplay.ListingPrice</span>
-                        }
-                    </p>
-                    <p>@Model.Description</p>
-                    <p><b>The order quantity of this product is limited to @Model.OrderLimit per user.</b></p>
-                    <h5>
-                        @if (Model.Variants.First().Inventory <= 7)
-                        {<span>Only</span>} @(Model.variantDisplay.Inventory - Model.variantDisplay.QuantitySold) left in stock
-                    </h5>
-
-                    @using (Html.BeginForm("AddItem", "Cart", new { ProductID = Model.ID, Inventory = Model.variantDisplay.Inventory, OrderLimit = Model.OrderLimit }, FormMethod.Post, new { enctype = "multipart/form-data" }))
-                    {
-                        <div class="input-group mb-4 row">
-                            <span class="input-group-btn">
-                                <button type="button" class="quantity-left-minus btn" data-type="minus" data-field="">
-                                    -
-                                </button>
-                            </span>
+                            <div class="input-group mb-4 row">
+                                <span class="input-group-btn">
+                                    <button type="button" class="quantity-left-minus btn" data-type="minus" data-field="">
+                                        -
+                                    </button>
+                                </span>
 
 
-                            <input type="text" id="quantity" name="Quantity" class="form-control input-number" value="1" min="1" max="100">
-                            <span class="input-group-btn ml-1">
-                                <button class="quantity-right-plus btn" type="button" data-type="plus" data-field="">
-                                    +
-                                </button>
-                            </span>
-                            <select name="VariantID" id="variant" class="form-control col-md-6" onchange="ChangeData(this)">
-                                @foreach (var Variant in Model.Variants)
-                                {
-                                    <option value=@Variant.ID>@Variant.VariantString</option>
-                                }
-                            </select>
-                        </div>
-
-                        <div class="row">
-                            <div class="col-sm-12 text-center">
-                                <p class="addtocart"><button class="btn btn-primary btn-addtocart" type="submit"><i class="icon-shopping-cart"></i> Add to Cart</button></p>
+                                <input type="text" id="quantity" name="Quantity" class="form-control input-number" value="1" min="1" max="100">
+                                <span class="input-group-btn ml-1">
+                                    <button class="quantity-right-plus btn" type="button" data-type="plus" data-field="">
+                                        +
+                                    </button>
+                                </span>
+                                <select name="VariantID" id="variant" class="form-control col-md-6" onchange="ChangeData(this)">
+                                    @foreach (var Variant in Model.Variants)
+                                    {
+                                        <option value=@Variant.ID>@Variant.VariantString</option>
+                                    }
+                                </select>
                             </div>
-                        </div>
-                    }
-                    <div id="Target"></div>
+
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <p class="addtocart"><button class="btn btn-primary btn-addtocart" type="submit" style="margin-left:-15px;">Add to Cart</button></p>
+                                </div>
+                            </div>
+                        }
+                        <div id="Target"></div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
-
 <script src="~/Scripts/jquery-3.3.1.js"></script>
 <script>
         function ChangeData(selectedID) {

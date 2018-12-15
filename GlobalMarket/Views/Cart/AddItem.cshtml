@@ -3,27 +3,30 @@
     ViewBag.Title = "AddItem";
 }
 
-<h2>AddItem</h2>
 
-<div class="row">
-    @if (Model.SuccessMessage != null)
-    {
-        <div class="col-md-6 offset-3">
-            <p>@Model.SuccessMessage</p>
-        </div>
-    }
-    else
-    {
-        <div class="col-md-6 offset-3">
-            <ul>
-                @foreach (var msg in Model.ErrorMessages)
-                {
-                    <li><p>@msg</p></li>
-                }
-            </ul>
-        </div>
-    }
+<div style="margin-top:10rem">
+    <div class="row">
+        @if (Model.SuccessMessage != null)
+        {
+            <div class="col-md-6 offset-3">
+                <div class="alert alert-success" role="alert">
+                    Item Successfully Added to Cart
+                </div>
+            </div>
+        }
+        else
+        {
+            <div class="col-md-6 offset-3">
+                <ul>
+                    @foreach (var msg in Model.ErrorMessages)
+                    {
+                        <li><p>@msg</p></li>
+                    }
+                </ul>
+            </div>
+        }
+    </div>
+    <p>
+        @Html.ActionLink("Back to previous page", null, null, null, new { href = Request.UrlReferrer, @class = "btn btn-dark" })
+    </p>
 </div>
-<p>
-    @Html.ActionLink("Back to previous page", null, null, null, new { href = Request.UrlReferrer, @class = "btn btn-default" })
-</p>

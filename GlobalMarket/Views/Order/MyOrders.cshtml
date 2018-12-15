@@ -3,21 +3,22 @@
     ViewBag.Title = "MyOrders";
 }
 
-<h2>MyOrders</h2>
+<div style="margin-top:10rem">
+    <h2>My Orders</h2>
+    <div class="row">
+        @foreach (var order in Model.Orders)
+        {
 
-<div class="row">
-    @foreach (var order in Model.Orders)
-    {
-        
-    <div class="col-md-7">
-        <a href="@Url.Action("GetOrder","Order", new {OrderID = order.ID })">
-            <h4>@order.OrderDate.ToString("dd/MM/yyyy")</h4>
-            <p><b>Total : </b>$@order.TotalAmount</p>
-            <p><b>Status : </b>@order.Status</p>
+            <div class="col-md-12">
+                <a href="@Url.Action("GetOrder","Order", new {OrderID = order.ID })">
+                    <h4>@order.OrderDate.ToString("dd/MM/yyyy")</h4>
+                    <p><b>Total : </b>$@order.TotalAmount</p>
+                    <p><b>Status : </b>@order.Status</p>
+                    <hr />
+                </a>
+            </div>
             <hr />
-            </a>
-           </div>
-        <hr />
-    }
+        }
+    </div>
 </div>
 

@@ -3,52 +3,49 @@
     ViewBag.Title = "GetOrder";
 }
 
-<h2>GetOrder</h2>
-
-<h2>Order Details</h2>
-<div class="row">
-    <div class="col-md-8">
-    </div>
-    <div class="col-md-1">
-        Quantity
-    </div>
-    <div class="col-md-1">
-        SellingPrice
-    </div>
-</div>
-@{ var totalAmount = 0;}
-
-@foreach (var orderItem in Model.OrderPlaceds)
-{
-    foreach (var variant in orderItem.OrderPlacedVariants)
-    {
-        <div class="row" style="padding:1px 1px 1px 1px;border: 1px solid #e2e6e2;margin-bottom:2px;">
-            <div class="col-md-2">
-                <img src="@variant.Variant.VariantImages.First().ImageURL" class="img-fluid" alt="Image Not available" style=" height:60px;width:60px;">
-            </div>
-            <div class="col-md-6">
-                <p style=" font-size: 30px;">@variant.Variant.Product.Name.ToUpper()</p>
-                <p style=" font-style: italic; font-size: 14px;">@variant.Variant.Product.Title</p>
-            </div>
-            <div class="col-md-1" style="margin:12px 0px 12px 0px;">
-                @variant.Quantity
-            </div>
-            <div class="col-md-1" style="margin:12px 0px 12px 0px;">
-                @variant.SellingPrice
-            </div>
-
+<div style="margin-top:10rem">
+    <h2>Order Details</h2>
+    <div class="row">
+        <div class="col-md-8">
         </div>
+        <div class="col-md-1">
+            Quantity
+        </div>
+        <div class="col-md-1">
+            SellingPrice
+        </div>
+    </div>
+
+    @foreach (var orderItem in Model.OrderPlaceds)
+    {
+        foreach (var variant in orderItem.OrderPlacedVariants)
+        {
+            <div class="row" style="padding:1px 1px 1px 1px;border: 1px solid #e2e6e2;margin-bottom:2px;">
+                <div class="col-md-2">
+                    <img src="@variant.Variant.VariantImages.First().ImageURL" class="img-fluid" alt="Image Not available" style=" height:60px;width:60px;">
+                </div>
+                <div class="col-md-6">
+                    <p style=" font-size: 30px;">@variant.Variant.Product.Name.ToUpper()</p>
+                    <p style=" font-style: italic; font-size: 14px;">@variant.Variant.Product.Title</p>
+                </div>
+                <div class="col-md-1" style="margin:12px 0px 12px 0px;">
+                    @variant.Quantity
+                </div>
+                <div class="col-md-1" style="margin:12px 0px 12px 0px;">
+                    @variant.SellingPrice
+                </div>
+
+            </div>
+        }
     }
-}
 
-<div class="row" style="padding:1px 1px 1px 1px;border: 1px solid #e2e6e2;margin-bottom:2px;">
-    <div class="col-md-9" style="margin:12px 0px 12px 0px;">
-        TotalAmount
+    <div class="row" style="padding:1px 1px 1px 1px;border: 1px solid #e2e6e2;margin-bottom:2px;">
+        <div class="col-md-9" style="margin:12px 0px 12px 0px;">
+            TotalAmount
+        </div>
+        <div class="col-md-1" style="margin:12px 0px 12px 0px;">
+            @Model.TotalAmount
+        </div>
     </div>
-    <div class="col-md-1" style="margin:12px 0px 12px 0px;">
-        @Model.TotalAmount
-    </div>
-
 </div>
-
 
