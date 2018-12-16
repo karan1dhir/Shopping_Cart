@@ -1,8 +1,8 @@
-﻿@model GlobalMarket.ViewModels.ProductViewModel
+﻿@model GlobalMarket.ViewModels.VariantViewModel
 @{
-    ViewBag.Title = "ProductDetail";
+    ViewBag.Title = "UpdateVariant";
 }
-<h2>ProductDetail</h2>
+
 <div style="margin-top:10rem">
     <div class="colorlib-product">
         <div class="container">
@@ -10,39 +10,38 @@
                 <div class="col-sm-8">
                     <div class="text-center" style="margin-top:50px;">
                         <a href="#" class="prod-img">
-                            <img src="@Model.variantDisplay.VariantImages.First().ImageURL" class="img-fluid" alt="Free html5 bootstrap 4 template" style="max-height: 300px; max-width: 300px;margin-left:-25rem;margin-top:-2rem">
-
+                            <img src="@Model.VariantImages.First().ImageURL" class="img-fluid" alt="Free html5 bootstrap 4 template" style="max-height: 300px; max-width: 300px;margin-left:-25rem;margin-top:-2rem">
                         </a>
                     </div>
-                    @foreach (var variant in Model.Variants.ToList())
+                    @foreach (var variant in Model.Product.Variants.ToList())
                     {
                         <a href="@Url.Action("UpdateVariant", "Product", new { variantID = variant.ID})" class="prod-img">
-                        <img src="@variant.VariantImages.First().ImageURL" class="img-fluid" alt="Free html5 bootstrap 4 template" style="max-width:50px;height:50px;margin-left:2rem;" />
-                         </a>
+                            <img src="@variant.VariantImages.First().ImageURL" class="img-fluid" alt="Free html5 bootstrap 4 template" style="max-width:50px;height:50px;margin-left:2rem;" />
+                        </a>
                     }
                 </div>
                 <div class="col-sm-4">
                     <div class="product-desc">
-                        <h3>@Model.Name</h3>
-                        <h5>Category : @Model.Category.Name</h5>
+                        <h3>@Model.Product.Category.Name</h3>
+                        <h5>Category : @Model.Product.Category.Name</h5>    
                         <p class="price">
-                            @if (Model.Variants.First().Discount != 0)
+                            @if (Model.Discount != 0)
                             {
-                                <strike>$@Model.variantDisplay.ListingPrice</strike><span style="display:inline">  $@((Model.variantDisplay.ListingPrice * (100 - Model.variantDisplay.Discount) / 100))</span>
+                                <strike>$@Model.ListingPrice</strike><span style="display:inline">  $@((Model.ListingPrice * (100 - Model.Discount) / 100))</span>
                             }
                             else
                             {
-                                <span>$@Model.variantDisplay.ListingPrice</span>
+                                <span>$@Model.ListingPrice</span>
                             }
                         </p>
-                        <p>@Model.Description</p>
-                        <p><b>The order quantity of this product is limited to @Model.OrderLimit per user.</b></p>
+                        <p>@Model.Product.Description</p>
+                        <p><b>The order quantity of this product is limited to @Model.Product.OrderLimit per user.</b></p>
                         <h5>
-                            @if (Model.Variants.First().Inventory <= 7)
-                            {<span>Only</span>} @(Model.variantDisplay.Inventory - Model.variantDisplay.QuantitySold) left in stock
+                            @if (Model.Inventory <= 7)
+                            {<span>Only</span>} @(Model.Inventory - Model.QuantitySold) left in stock
                         </h5>
 
-                        @using (Html.BeginForm("AddItem", "Cart", new { ProductID = Model.ID, Inventory = Model.variantDisplay.Inventory, OrderLimit = Model.OrderLimit }, FormMethod.Post, new { enctype = "multipart/form-data" }))
+                        @using (Html.BeginForm("AddItem", "Cart", new { ProductID = Model.ID, Inventory = Model.Inventory, OrderLimit = Model.Product.OrderLimit }, FormMethod.Post, new { enctype = "multipart/form-data" }))
                         {
                             <div class="input-group mb-4 row">
                                 <span class="input-group-btn">
@@ -59,7 +58,7 @@
                                     </button>
                                 </span>
                                 <select name="VariantID" id="variant" class="form-control col-md-6" hidden>
-                                    @foreach (var Variant in Model.Variants)
+                                    @foreach (var Variant in Model.Product.Variants)
                                     {
                                         <option value=@Variant.ID>@Variant.VariantString</option>
                                     }
@@ -67,8 +66,8 @@
                             </div>
 
                             <div class="row">
-                                <div class="col-sm-12">
-                                    <p class="addtocart"><button class="btn btn-primary btn-addtocart" type="submit" style="margin-left:-15px;">Add to Cart</button></p>
+                                <div class="col-sm-12 text-center">
+                                    <p class="addtocart"><button class="btn btn-primary btn-addtocart" type="submit"><i class="icon-shopping-cart"></i> Add to Cart</button></p>
                                 </div>
                             </div>
                         }
@@ -79,5 +78,6 @@
         </div>
     </div>
 </div>
+
 
 

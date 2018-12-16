@@ -292,11 +292,11 @@
     <Content Include="Views\Order\GetOrder.cshtml" />
     <Content Include="Views\User\Admin.cshtml" />
     <Content Include="Views\User\NotAdmin.cshtml" />
-    <Content Include="Views\Product\VariantInfo.cshtml" />
     <Content Include="Views\Order\NoOrders.cshtml" />
     <Content Include="Views\Default\DefaultExceptionCatch.cshtml" />
     <Content Include="Views\Shared\InternalError.cshtml" />
     <Content Include="Views\Home\PageNotFound.cshtml" />
+    <Content Include="Views\Product\UpdateVariant.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Models\" />

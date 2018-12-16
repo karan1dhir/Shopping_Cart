@@ -75,33 +75,25 @@ namespace GlobalMarket.Controllers
             
         }
 
-        public ActionResult VariantInfo(VariantViewModel VariantViewModelParam)
-        {
-            return View(VariantViewModelParam);
-        }
-    
-
-        [HttpPost]
-        public ActionResult UpdateVariant(string variantID)
+        //[HttpPost]
+        public ActionResult UpdateVariant(Guid variantID)
         {
             try
             {
-                Guid VariantID = new Guid(variantID);
+                Guid VariantID = variantID ;
                 ProductViewModel productViewModel = new ProductViewModel();
                 VariantDTO variantDTO = productBusinessContext.GetVariant(VariantID);
                 VariantViewModel variantViewModel = ProductProductVMMapper.Map<VariantDTO, VariantViewModel>(variantDTO);
                 ProductDTO productDTO = productBusinessContext.GetProduct(variantDTO.Product.ID);
                 productViewModel = CategoryProductVMMapper.Map<ProductDTO, ProductViewModel>(productDTO);
                 productViewModel.variantDisplay = variantViewModel;
-                return RedirectToAction("VariantInfo", new { VariantViewModelParam = variantViewModel });
+                return View(productViewModel.variantDisplay);
             }
             catch(Exception ex)
             {
                 return RedirectToAction("DefaultExceptionCatch", "Default", new { exception = ex });
             }
         }
-
-
         public ActionResult SearchProducts(string SearchString)
         {
             ProductsSearchResultDTO productsSearchResultDTO = new ProductsSearchResultDTO();

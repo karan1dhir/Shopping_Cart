@@ -13,7 +13,7 @@
                 {
                     <div class="col-md-4 col-lg-4 mb-4 text-center">
                         <div class="product-entry border">
-                            <a href="@Url.Action("ProductDetail", "Product", new { ProductID = product.ID })">
+                            <a href="@Url.Action("ProductDetail", "Product", new { ProductID = product.ID })"  style="color:black;text-decoration:none">
                                 @foreach (var Variants in product.Variants)
                                 {
                                     foreach (var Image in Variants.VariantImages)

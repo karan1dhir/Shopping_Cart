@@ -1,3 +1,5 @@
+C:\Users\karandhir\source\repos\GlobalMarket\DataAccess\bin\Release\ShoppingCart.mdf
+C:\Users\karandhir\source\repos\GlobalMarket\DataAccess\bin\Release\ShoppingCart_log.ldf
 C:\Users\karandhir\source\repos\GlobalMarket\DataAccess\bin\Release\DataAccess.dll.config
 C:\Users\karandhir\source\repos\GlobalMarket\DataAccess\bin\Release\DataAccess.dll
 C:\Users\karandhir\source\repos\GlobalMarket\DataAccess\bin\Release\DataAccess.pdb
@@ -21,5 +23,3 @@ C:\Users\karandhir\source\repos\GlobalMarket\DataAccess\obj\Release\DataAccess.c
 C:\Users\karandhir\source\repos\GlobalMarket\DataAccess\obj\Release\DataAccess.csproj.CopyComplete
 C:\Users\karandhir\source\repos\GlobalMarket\DataAccess\obj\Release\DataAccess.dll
 C:\Users\karandhir\source\repos\GlobalMarket\DataAccess\obj\Release\DataAccess.pdb
-C:\Users\karandhir\source\repos\GlobalMarket\DataAccess\bin\Release\ShoppingCart.mdf
-C:\Users\karandhir\source\repos\GlobalMarket\DataAccess\bin\Release\ShoppingCart_log.ldf
