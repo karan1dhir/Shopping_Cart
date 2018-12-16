@@ -3,39 +3,41 @@
     ViewBag.Title = "SearchProducts";
 }
 
-<h2>SearchProducts</h2>
+    <h2>SearchProducts</h2>
+    <div style="margin-top:10rem">
+        <div>
+            <h4>Your search " @ViewBag.SearchString "</h4>
+            <hr />
+            <dl class="dl-horizontal"></dl>
+        </div>
 
-<div>
-    <h4>Your search " @ViewBag.SearchString "</h4>
-    <hr />
-    <dl class="dl-horizontal"></dl>
-</div>
-
-  @if (Model.Products.Count() != 0)
-  {
-    <div class="row row-pb-md">
-        @foreach (var product in Model.Products)
+        @if (Model.Products.Count() != 0)
         {
-            <div class="col-md-3 col-lg-3 mb-4 text-center">
-                <div class="product-entry border">
-                    <a  style="color:black" href="@Url.Action("ProductDetail", "Products", new { ProductID = product.ID },null)">
-                        <img src="@product.Variants.FirstOrDefault().VariantImages.FirstOrDefault().ImageURL" class="img-fluid" alt="Free html5 bootstrap 4 template" style=" height:160px;width:140px;">
-                    </a>
-                    <div class="desc">
-                        <h2><a href="@Url.Action("ProductDetail", "Products", new { ProductID = product.ID })">@product.Name</a></h2>
-                        <span class="price">$@product.Variants.FirstOrDefault().ListingPrice</span>
+            <div class="row row-pb-md">
+                @foreach (var product in Model.Products)
+                {
+                    <div class="col-md-3 col-lg-3 mb-4 text-center">
+                        <div class="product-entry border">
+                            <a style="color:black" href="@Url.Action("ProductDetail", "Product", new { ProductID = product.ID },null)">
+                                <img src="@product.Variants.FirstOrDefault().VariantImages.FirstOrDefault().ImageURL" class="img-fluid" alt="Free html5 bootstrap 4 template" style=" height:160px;width:140px;">
+                            </a>
+                            <div class="desc">
+                                <h2><a href="@Url.Action("ProductDetail", "Product", new { ProductID = product.ID })">@product.Name</a></h2>
+                                <span class="price">$@product.Variants.FirstOrDefault().ListingPrice</span>
+                            </div>
+                            @if (product.Variants.FirstOrDefault().Discount != 0)
+                            {
+                                <p>Discount Available</p>
+                            }
+                        </div>
                     </div>
-                    @if (product.Variants.FirstOrDefault().Discount != 0)
-                    {
-                      <p>Discount Available</p>
-                    }
-                </div>
+                }
             </div>
         }
-     </div>
-  }
-  else
-  {
-      <p>No Products corresponding to search were found.</p>
-  }
-
+        else
+        {
+            <div class="alert alert-danger" role="alert">
+                No Products corresponding to search were found :(
+            </div>   
+        }
+    </div>

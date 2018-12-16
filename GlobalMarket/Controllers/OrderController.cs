@@ -60,11 +60,14 @@ namespace GlobalMarket.Controllers
                     AddressDTO addressDTO = AddressMapper.Map<AddressViewModel, AddressDTO>(addressViewModel);
                     orderBusinessContext.PlaceOrder(new Guid(Session["UserID"].ToString()), addressDTO);
                     return View("Success");
-
+                }
+                catch (CartEmptyException ex)
+                {
+                    return RedirectToAction("DefaultExceptionCatch", "Default", new { exception = ex });
                 }
                 catch (Exception ex)
                 {
-                    return View("Internal Error");
+                    return View("InternalError");
                 }
             }
             else

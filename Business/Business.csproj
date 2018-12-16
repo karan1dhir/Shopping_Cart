@@ -60,6 +60,7 @@
     <Compile Include="BusinessObjects\CartBusinessContext.cs" />
     <Compile Include="BusinessObjects\CategoryBusinessContext.cs" />
     <Compile Include="BusinessObjects\OrderBusinessContext.cs" />
+    <Compile Include="Exceptions\CartEmptyException.cs" />
     <Compile Include="Exceptions\CatgoryDoesNotExistsException.cs" />
     <Compile Include="Exceptions\InvalidLoginException.cs" />
     <Compile Include="Exceptions\ItemAlreadyInCartException.cs" />

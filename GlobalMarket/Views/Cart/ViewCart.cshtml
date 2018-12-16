@@ -23,67 +23,78 @@
             </div>
         </div>
         <h2>Your Cart</h2>
-        <div class="row">
-            <div class="col-md-8">
-            </div>
-            <div class="col-md-1">
-                Quantity
-            </div>
-            <div class="col-md-1">
-                SellingPrice
-            </div>
-        </div>
-        @{ double totalAmount = 0;}
 
-        @foreach (var cartItem in Model.CartItems)
+        @{ double totalAmount = 0;}
+        @if (Model.CartItems.Count() == 0)
         {
-            var counter = 0;
-            double SP = cartItem.Quantity * cartItem.Variant.DiscountedPrice;
-            totalAmount = totalAmount + SP;
-            <div class="row" style="padding:1px 1px 1px 1px;border: 1px solid #e2e6e2;margin-bottom:2px;">
-                <div class="col-md-2">
-                    @foreach (var VariantsImage in cartItem.Variant.VariantImages)
-                    {
-                        if (counter == 0)
-                        {
-                            <img src="@VariantsImage.ImageURL" class="img-fluid" alt="Image Not available" style=" height:60px;width:60px;">
-                            counter = 1;
-                        }
-                    }
-                </div>
-                <div class="col-md-6">
-                    <p style=" font-size: 30px;">@cartItem.Variant.Product.Title.ToUpper()</p>
-                    <p style=" font-style: italic; font-size: 14px;">@cartItem.Variant.Product.Description</p>
-                </div>
-                <div class="col-md-1" style="margin:12px 0px 12px 0px;">
-                    @cartItem.Quantity
-                </div>
-                <div class="col-md-1" style="margin:12px 0px 12px 0px;">
-                    @SP
-                </div>
-                <div class="col-md-2" style="margin:12px 0px 12px 0px;">
-                    <a href="@Url.Action("RemoveItem", "Cart", new {VariantID = cartItem.Variant.ID })">
-                        <p class="btn btn-danger">Delete</p>
-                    </a>
-                </div>
+            <div class="alert alert-danger" role="alert">
+                Your Cart is Empty :(
             </div>
         }
-
-        <div class="row" style="padding:1px 1px 1px 1px;border: 1px solid #e2e6e2;margin-bottom:2px;">
-            <div class="col-md-9" style="margin:12px 0px 12px 0px;">
-                TotalAmount
-            </div>
-            <div class="col-md-1" style="margin:12px 0px 12px 0px;">
-                @totalAmount
-            </div>
-
-        </div>
-        @if (Model.CartItems.Count() != 0)
+        else
         {
-            <div style="margin:12px 0px 12px 0px;text-align:center;">
-                <a href="@Url.Action("Checkout", "Order")">
-                    <p class="btn btn-success">Proceed To CheckOut</p>
-                </a>
+            <div class="row">
+                <div class="col-md-8">
+                </div>
+                <div class="col-md-1">
+                    Quantity
+                </div>
+                <div class="col-md-1">
+                    SellingPrice
+                </div>
+            </div>
+            <div>
+                @foreach (var cartItem in Model.CartItems)
+                {
+                    var counter = 0;
+                    double SP = cartItem.Quantity * cartItem.Variant.DiscountedPrice;
+                    totalAmount = totalAmount + SP;
+                    <div class="row" style="padding:1px 1px 1px 1px;border: 1px solid #e2e6e2;margin-bottom:2px;">
+                        <div class="col-md-2">
+                            @foreach (var VariantsImage in cartItem.Variant.VariantImages)
+                            {
+                                if (counter == 0)
+                                {
+                                    <img src="@VariantsImage.ImageURL" class="img-fluid" alt="Image Not available" style=" height:60px;width:60px;">
+                                    counter = 1;
+                                }
+                            }
+                        </div>
+                        <div class="col-md-6">
+                            <p style=" font-size: 30px;">@cartItem.Variant.Product.Title.ToUpper()</p>
+                            <p style=" font-style: italic; font-size: 14px;">@cartItem.Variant.Product.Description</p>
+                        </div>
+                        <div class="col-md-1" style="margin:12px 0px 12px 0px;">
+                            @cartItem.Quantity
+                        </div>
+                        <div class="col-md-1" style="margin:12px 0px 12px 0px;">
+                            @SP
+                        </div>
+                        <div class="col-md-2" style="margin:12px 0px 12px 0px;">
+                            <a href="@Url.Action("RemoveItem", "Cart", new { VariantID = cartItem.Variant.ID })">
+                                <p class="btn btn-danger">Delete</p>
+                            </a>
+                        </div>
+                    </div>
+                }
+
+                <div class="row" style="padding:1px 1px 1px 1px;border: 1px solid #e2e6e2;margin-bottom:2px;">
+                    <div class="col-md-9" style="margin:12px 0px 12px 0px;">
+                        TotalAmount
+                    </div>
+                    <div class="col-md-1" style="margin:12px 0px 12px 0px;">
+                        @totalAmount
+                    </div>
+
+                </div>
+                @if (Model.CartItems.Count() != 0)
+                {
+                    <div style="margin:12px 0px 12px 0px;text-align:center;">
+                        <a href="@Url.Action("Checkout", "Order")">
+                            <p class="btn btn-success">Proceed To CheckOut</p>
+                        </a>
+                    </div>
+                }
             </div>
         }
     </div>

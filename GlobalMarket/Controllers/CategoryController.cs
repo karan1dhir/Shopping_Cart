@@ -55,7 +55,7 @@ namespace GlobalMarket.Controllers
 
             catch (Exception ex)
             {
-                return View("Internal Error");
+                return View("InternalError");
             }
         }
     }

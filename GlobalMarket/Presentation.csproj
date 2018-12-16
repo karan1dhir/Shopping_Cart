@@ -287,7 +287,6 @@
     <Content Include="Views\Order\Success.cshtml" />
     <Content Include="Views\Order\MyOrders.cshtml" />
     <Content Include="Views\Product\SearchProducts.cshtml" />
-    <Content Include="Views\Shared\Navbar.cshtml" />
     <Content Include="Views\Category\GetCategories.cshtml" />
     <Content Include="Views\Category\CategoryProducts.cshtml" />
     <Content Include="Views\Order\GetOrder.cshtml" />
@@ -296,6 +295,8 @@
     <Content Include="Views\Product\VariantInfo.cshtml" />
     <Content Include="Views\Order\NoOrders.cshtml" />
     <Content Include="Views\Default\DefaultExceptionCatch.cshtml" />
+    <Content Include="Views\Shared\InternalError.cshtml" />
+    <Content Include="Views\Home\PageNotFound.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Models\" />
@@ -315,6 +316,10 @@
     <ProjectReference Include="..\Business\Business.csproj">
       <Project>{9c953d55-5058-4200-ba21-e01fc5cf2b7d}</Project>
       <Name>Business</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DataAccess\DataAccess.csproj">
+      <Project>{331D7095-6891-4A63-B0E2-88FAAD6C3624}</Project>
+      <Name>DataAccess</Name>
     </ProjectReference>
     <ProjectReference Include="..\Entities\Entities.csproj">
       <Project>{A1596489-7BFD-448E-9BBB-1AD06A8B3520}</Project>

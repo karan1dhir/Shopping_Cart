@@ -94,7 +94,7 @@ namespace DataAccess.DBObjects
         }
         public ProductsSearchResultDTO GetProductsWithString(string SearchString)
         {
-            IEnumerable<Product> searchResults = shoppingCartEntities.Products.Where(p => p.Title.Contains(SearchString) || p.Description.Contains(SearchString)).Include(p => p.Category);
+            IEnumerable<Product> searchResults = shoppingCartEntities.Products.Where(p => p.Title.Contains(SearchString) || p.Name.Contains(SearchString)).Include(p => p.Category);
             Debug.WriteLine(shoppingCartEntities.Products.Where(p => p.Title.Contains(SearchString) || p.Description.Contains(SearchString)).Include(p => p.Category));
             ProductsSearchResultDTO productsSearchResultDTO = new ProductsSearchResultDTO();
             productsSearchResultDTO.Products = ProductSearchMapper.Map<IEnumerable<Product>, IEnumerable<ProductDTO>>(searchResults);

@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Business.BusinessObjects;
 using Business.Exceptions;
+using DataAccess.Exceptions;
 using GlobalMarket.ActionFilter;
 using GlobalMarket.ViewModels;
 using Shared.DTO.Cart;
@@ -68,6 +69,16 @@ namespace GlobalMarket.Controllers
                 catch (ItemAlreadyInCartException ex)
                 {
                     cartMessageViewModel.ErrorMessages.Add("Item is already present in the cart");
+                    return View(cartMessageViewModel);
+                }
+                catch(OrderLimitExceededException)
+                {
+                    cartMessageViewModel.ErrorMessages.Add("Order Quantity Exceeded the limit");
+                    return View(cartMessageViewModel);
+                }
+                catch (QuantityUnavailableException)
+                {
+                    cartMessageViewModel.ErrorMessages.Add("Requested Quantity is UnAvailable");
                     return View(cartMessageViewModel);
                 }
                 catch (Exception ex)

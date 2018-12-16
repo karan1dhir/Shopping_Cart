@@ -26,25 +26,32 @@ namespace Business.BusinessObjects
 
         }
 
-        public bool PlaceOrder(Guid UserID, AddressDTO addressDTO)
+        public void PlaceOrder(Guid UserID, AddressDTO addressDTO)
         {
-            Guid AddressID = addressDatabaseContext.AddAddress(UserID, addressDTO);
-            CartVariantItemsDTO cartVariantItemsDTO = cartDataBaseContext.GetCart(UserID);
-            double subtotal = new double();
-            foreach (var cartVariant in cartVariantItemsDTO.CartItems)
+            if (orderDataBaseContext.ItemsExist(UserID))
             {
-                int OrderQuantity = cartVariant.Quantity;
-                double Discount = cartVariant.Variant.Discount;
-                double Price = cartVariant.Variant.ListingPrice;
-                cartVariant.Variant.DiscountedPrice = (Price * (100 - Discount) / 100);
-                double DiscountedPrice = cartVariant.Variant.DiscountedPrice;
-                subtotal += DiscountedPrice * OrderQuantity;
+
+                Guid AddressID = addressDatabaseContext.AddAddress(UserID, addressDTO);
+                CartVariantItemsDTO cartVariantItemsDTO = cartDataBaseContext.GetCart(UserID);
+                double subtotal = new double();
+                foreach (var cartVariant in cartVariantItemsDTO.CartItems)
+                {
+                    int OrderQuantity = cartVariant.Quantity;
+                    double Discount = cartVariant.Variant.Discount;
+                    double Price = cartVariant.Variant.ListingPrice;
+                    cartVariant.Variant.DiscountedPrice = (Price * (100 - Discount) / 100);
+                    double DiscountedPrice = cartVariant.Variant.DiscountedPrice;
+                    subtotal += DiscountedPrice * OrderQuantity;
+                }
+                cartVariantItemsDTO.SubTotal = subtotal;
+                orderDataBaseContext.PlaceOrder(UserID, cartVariantItemsDTO, AddressID);
+                productDatabaseContext.UpdateInventory(cartVariantItemsDTO);
+                cartDataBaseContext.EmptyCart(UserID);
             }
-            cartVariantItemsDTO.SubTotal = subtotal;
-            orderDataBaseContext.PlaceOrder(UserID, cartVariantItemsDTO, AddressID);
-            productDatabaseContext.UpdateInventory(cartVariantItemsDTO);
-            cartDataBaseContext.EmptyCart(UserID);
-            return true;
+            else
+            {
+                throw new CartEmptyException();
+            }
         }
         public OrdersDTO GetOrders(Guid UserID)
         {

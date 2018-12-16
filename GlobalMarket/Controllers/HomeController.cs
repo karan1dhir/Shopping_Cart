@@ -43,8 +43,12 @@ namespace GlobalMarket.Controllers
             catch (Exception ex)
             {
             
-                return View("Internal Error"+ex);
+                return View("InternalError"+ex);
             }
+        }
+        public ActionResult PageNotFound()
+        {
+            return View();
         }
     }
 }

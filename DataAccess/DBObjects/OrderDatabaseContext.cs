@@ -11,6 +11,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Data.Entity;
 
 namespace DataAccess.DBObjects
 {
@@ -70,7 +71,19 @@ namespace DataAccess.DBObjects
             string status = shoppingCartEntities.Status.Where(s => s.ID == statusID).Select(s => s.description).FirstOrDefault();
             return status;
         }
-
+        public bool ItemsExist(Guid userID)
+        {
+            int items = shoppingCartEntities.CartVariantMappings.Include(c => c.VariantID).Where(c => c.CartID == userID).Count();
+            Debug.WriteLine(shoppingCartEntities.CartVariantMappings.Include(c => c.VariantID).Where(c => c.CartID == userID).Count());
+            if (items > 0)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
         public OrdersDTO GetOrders(Guid UserID)
           {
             IEnumerable<Guid> OrderPlacedID = shoppingCartEntities.OrderPlaceds.Where(c => c.UserID == UserID).Select(o => o.OrderID).ToList();

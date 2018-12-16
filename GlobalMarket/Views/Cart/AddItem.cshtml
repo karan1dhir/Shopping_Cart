@@ -8,7 +8,7 @@
     <div class="row">
         @if (Model.SuccessMessage != null)
         {
-            <div class="col-md-6 offset-3">
+            <div class="col-md-8 offset-2">
                 <div class="alert alert-success" role="alert">
                     Item Successfully Added to Cart
                 </div>
@@ -16,11 +16,13 @@
         }
         else
         {
-            <div class="col-md-6 offset-3">
+            <div class="col-md-8 offset-2">
                 <ul>
                     @foreach (var msg in Model.ErrorMessages)
                     {
-                        <li><p>@msg</p></li>
+                    <li style="list-style:none">
+                        <p class="alert alert-danger" role="alert">@msg</p>
+                    </li>
                     }
                 </ul>
             </div>

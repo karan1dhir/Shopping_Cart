@@ -70,7 +70,7 @@ namespace GlobalMarket.Controllers
             }
             catch(Exception ex)
             {
-                return View("Internal View");
+                return View("InternalError");
             }
             
         }
