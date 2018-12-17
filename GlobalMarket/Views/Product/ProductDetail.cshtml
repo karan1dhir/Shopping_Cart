@@ -37,6 +37,9 @@
                         </p>
                         <p>@Model.Description</p>
                         <p><b>The order quantity of this product is limited to @Model.OrderLimit per user.</b></p>
+                        <h3>
+                            @Model.variantDisplay.VariantString
+                        </h3>
                         <h5>
                             @if (Model.Variants.First().Inventory <= 7)
                             {<span>Only</span>} @(Model.variantDisplay.Inventory - Model.variantDisplay.QuantitySold) left in stock

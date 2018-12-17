@@ -1,7 +1,9 @@
-﻿
+﻿@model GlobalMarket.ViewModels.ExceptionViewModel
 @{
     ViewBag.Title = "DefaultExceptionCatch";
 }
 
-<h2>Exception Occured</h2>
+<div style="margin-top:10rem">
+    <h2>@Model.exceptionMessage</h2>
+</div>
 

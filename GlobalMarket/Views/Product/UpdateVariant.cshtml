@@ -23,7 +23,7 @@
                 <div class="col-sm-4">
                     <div class="product-desc">
                         <h3>@Model.Product.Category.Name</h3>
-                        <h5>Category : @Model.Product.Category.Name</h5>    
+                        <h5>Category : @Model.Product.Category.Name</h5>
                         <p class="price">
                             @if (Model.Discount != 0)
                             {
@@ -36,6 +36,9 @@
                         </p>
                         <p>@Model.Product.Description</p>
                         <p><b>The order quantity of this product is limited to @Model.Product.OrderLimit per user.</b></p>
+                        <h3>
+                            @Model.variantDisplay.VariantString
+                        </h3>
                         <h5>
                             @if (Model.Inventory <= 7)
                             {<span>Only</span>} @(Model.Inventory - Model.QuantitySold) left in stock

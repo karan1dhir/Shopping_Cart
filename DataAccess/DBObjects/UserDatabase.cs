@@ -99,7 +99,7 @@ namespace DataAccess.DBObjects
 
         public RoleBasicDTO GetRole()
         {
-            List<Role> roles = shoppingCartEntities.Roles.Where(p=> p.Name != "ADMIN").ToList();
+            List<Role> roles = shoppingCartEntities.Roles.Where(p=>p.Name!="ADMIN").ToList();
             Debug.WriteLine(shoppingCartEntities.Roles.Where(p => p.Name != "ADMIN").ToList());
             IEnumerable<Role> convertRoles= roles.AsEnumerable<Role>();
             RoleBasicDTO roleBasicDTO = new RoleBasicDTO();

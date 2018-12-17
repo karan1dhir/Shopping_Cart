@@ -63,7 +63,7 @@ namespace GlobalMarket.Controllers
                 }
                 catch (CartEmptyException ex)
                 {
-                    return RedirectToAction("DefaultExceptionCatch", "Default", new { exception = ex });
+                    return RedirectToAction("DefaultExceptionCatch", "Default", new { exception = ex.Message });
                 }
                 catch (Exception ex)
                 {

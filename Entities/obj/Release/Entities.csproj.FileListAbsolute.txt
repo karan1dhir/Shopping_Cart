@@ -12,8 +12,8 @@ C:\Users\karandhir\source\repos\GlobalMarket\Entities\bin\Release\AutoMapper.xml
 C:\Users\karandhir\source\repos\GlobalMarket\Entities\bin\Release\EntityFramework.xml
 C:\Users\karandhir\source\repos\GlobalMarket\Entities\bin\Release\EntityFramework.SqlServer.xml
 C:\Users\karandhir\source\repos\GlobalMarket\Entities\bin\Release\System.ValueTuple.xml
-C:\Users\karandhir\source\repos\GlobalMarket\Entities\obj\Release\Entities.csprojAssemblyReference.cache
 C:\Users\karandhir\source\repos\GlobalMarket\Entities\obj\Release\Entities.csproj.CoreCompileInputs.cache
 C:\Users\karandhir\source\repos\GlobalMarket\Entities\obj\Release\Entities.csproj.CopyComplete
 C:\Users\karandhir\source\repos\GlobalMarket\Entities\obj\Release\Entities.dll
 C:\Users\karandhir\source\repos\GlobalMarket\Entities\obj\Release\Entities.pdb
+C:\Users\karandhir\source\repos\GlobalMarket\Entities\obj\Release\Entities.csprojAssemblyReference.cache

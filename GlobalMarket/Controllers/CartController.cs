@@ -111,7 +111,7 @@ namespace GlobalMarket.Controllers
             }
             catch(Exception ex)
             {
-                return RedirectToAction("DefaultExceptionCatch", "Default", new { exception = ex });
+                return RedirectToAction("DefaultExceptionCatch", "Default", new { exception = ex.Message });
             }
         }
         public ActionResult RemoveItem(Guid VariantID)
@@ -123,7 +123,7 @@ namespace GlobalMarket.Controllers
             }
             catch(Exception ex)
             {
-                return RedirectToAction("DefaultExceptionCatch", "Default", new { exception = ex });
+                return RedirectToAction("DefaultExceptionCatch", "Default", new { exception = ex.Message });
             }
         }
     }
